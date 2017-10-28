@@ -2,14 +2,17 @@ const BaseService = require('./BaseService');
 const rp = require('request-promise');
 
 class IndexService extends BaseService {
-    async hotServiceItemsData() {
+    async topics() {
         const options = {
             method: 'GET',
             json: true,
             qs: {
-                count: '3'
+                page: 1,
+                tab: 'share',
+                limit: 10,
+                mdrender: true
             },
-            uri: `${this.url}/first/hotServiceItems`
+            uri: `${this.url}/topics`
         };
         try {
             const response = await rp(options);
@@ -20,86 +23,14 @@ class IndexService extends BaseService {
         }
     }
 
-    async requirementData() {
+    async topicsDetails(id) {
         const options = {
             method: 'GET',
             json: true,
             qs: {
-                count: '3'
+                mdrender: true
             },
-            uri: `${this.url}/first/requirement`
-        };
-        try {
-            const response = await rp(options);
-            return response;
-
-        } catch (error) {
-            throw new Error(error);
-        }
-    }
-
-    async expertData() {
-        const options = {
-            method: 'GET',
-            json: true,
-            qs: {
-                count: '3'
-            },
-            uri: `${this.url}/first/expert`
-        };
-        try {
-            const response = await rp(options);
-            return response;
-
-        } catch (error) {
-            throw new Error(error);
-        }
-    }
-
-    async contentData() {
-        const options = {
-            method: 'GET',
-            json: true,
-            qs: {
-                count: '3'
-            },
-            uri: `${this.url}/first/content`
-        };
-        try {
-            const response = await rp(options);
-            return response;
-
-        } catch (error) {
-            throw new Error(error);
-        }
-    }
-
-    async carouselData(){
-        const options = {
-            method: 'GET',
-            json: true,
-            qs: {
-                count: '3'
-            },
-            uri: `${this.url}/first/swiper`
-        };
-        try {
-            const response = await rp(options);
-            return response;
-
-        } catch (error) {
-            throw new Error(error);
-        }
-    }
-
-    async serviceorg(){
-        const options = {
-            method: 'GET',
-            json: true,
-            qs: {
-                count: '3'
-            },
-            uri: `${this.url}/serviceorg/recommend`
+            uri: `${this.url}/topic/${id}`
         };
         try {
             const response = await rp(options);

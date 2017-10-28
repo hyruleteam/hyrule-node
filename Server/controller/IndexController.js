@@ -4,27 +4,32 @@ const IndexService = require('./../service/IndexService');
 class IndexController extends BaseController {
     static async home(ctx, next) {
         try {
-            const hotService = await new IndexService().hotServiceItemsData(); //热门服务产品
-            const requirement = await new IndexService().requirementData(); //最新需求
-            const expert = await new IndexService().expertData() //专家列表
-            const content = await new IndexService().contentData(); //政策资讯
-            const carousel = await new IndexService().carouselData();//首页轮播图
-            const org = await new IndexService().serviceorg();//热推机构
+            const topics = await new IndexService().topics(); //话题列表
             const config = super.config()
+            let value = await Promise.all([topics])
 
-            let value = await Promise.all([hotService, requirement, expert, content, carousel, org])
-
-            let [hsData, reqData, exData, cntData, carData, orgData] = value;
+            let [tData] = value;
             await ctx.render('index', {
                 title: '首页',
                 act: '0',
-                hotService: hsData.data,
-                requirement: reqData.data,
-                expert: exData.data,
-                content: cntData.data,
-                carousel:carData.data,
-                org:orgData.data,
-                imgUrl:config.imgURL
+                topics: tData.data
+            })
+
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    static async details(ctx, next) {
+        try {
+            const topics = await new IndexService().topicsDetails(ctx.params.id); //话题详情
+            const config = super.config()
+            let value = await Promise.all([topics])
+
+            let [tData] = value;
+            await ctx.render('details', {
+                title: '详情',
+                topicsDetails: tData.data
             })
 
         } catch (error) {

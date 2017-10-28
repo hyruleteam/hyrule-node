@@ -3,10 +3,12 @@ const IndexCtrl = require('./../controller/IndexController')
 
 router.get('/home', IndexCtrl.home);
 
-router.get('/error', async(ctx, next) =>{
+router.get('/topic/:id', IndexCtrl.details);
+
+router.get('/error', async(ctx, next) => {
     await ctx.render('error', {
-        title:"错误",
-        msg:ctx.message
+        title: "错误",
+        msg: ctx.message
     })
 })
 

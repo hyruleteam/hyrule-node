@@ -23,13 +23,13 @@ gulp.task('browser-sync', () => {
     browserSync.init({
         proxy: 'http://localhost:3000',
         port: 4000,
-        open:false,
+        open: false,
         notify: false
     });
 });
 
 //html
-gulp.task('buildHtml',['buildClean'], () => {
+gulp.task('buildHtml', () => {
     return gulp.src([`${devPath}/html/**/*.html`, `!${devPath}/html/include/*.html`])
         .pipe(plumber())
         .pipe(fileinclude({
@@ -40,7 +40,7 @@ gulp.task('buildHtml',['buildClean'], () => {
 });
 
 //style
-gulp.task('buildStyle',['buildClean'], () => {
+gulp.task('buildStyle', () => {
     return gulp.src(`${devPath}/sass/*.scss`)
         .pipe(plumber())
         .pipe(sass().on('error', sass.logError))
@@ -49,7 +49,7 @@ gulp.task('buildStyle',['buildClean'], () => {
 });
 
 //js
-gulp.task('buildJs',['buildClean'], () => {
+gulp.task('buildJs', () => {
     const pageJs = gulp.src([`${devPath}/js/pages/**/*.js`])
         .pipe(plumber())
         .pipe(gulp.dest(`${distPath}/js/pages/`));
@@ -62,8 +62,8 @@ gulp.task('buildJs',['buildClean'], () => {
 });
 
 //images
-gulp.task('buildImages',['buildClean'], () => {
-    return gulp.src([`${devPath}/images/**/*`,`!${devPath}/images/sprites/**/*`])
+gulp.task('buildImages', () => {
+    return gulp.src([`${devPath}/images/**/*`, `!${devPath}/images/sprites/**/*`])
         .pipe(plumber())
         .pipe(gulp.dest(`${distPath}/images/`))
 });
@@ -80,11 +80,11 @@ const spritesMithConfig = {
     padding: 10
 }
 
-gulp.task('buildSprite',['buildClean'], () => {
+gulp.task('buildSprite', () => {
     const spriteData =
         gulp.src(`${devPath}/images/sprites/${argv.name}/*`)
-            .pipe(plumber())
-            .pipe(spritesmith(spritesMithConfig));
+        .pipe(plumber())
+        .pipe(spritesmith(spritesMithConfig));
 
     spriteData.img.pipe(gulp.dest(`${devPath}/images/sprite`));
     spriteData.img.pipe(gulp.dest(`${distPath}/images/sprite`));
@@ -101,10 +101,10 @@ gulp.task('buildClean', () => {
 });
 
 //devPack
-gulp.task('devPack',['buildHtml','buildStyle','buildJs','buildImages']);
+gulp.task('devPack', ['buildHtml', 'buildStyle', 'buildJs', 'buildImages']);
 
 //buildPack
-gulp.task('buildPack',['devPack'],() => {
+gulp.task('buildPack', ['devPack'], () => {
     const styles = gulp.src(`${distPath}/css/*.css`)
         .pipe(plumber())
         .pipe(autoprefixer({
@@ -135,7 +135,7 @@ gulp.task('nodemon', cb => {
 
     return nodemon({
         script: `${serverPath}/bin/www`,
-        ext:'js',
+        ext: 'js',
         ignore: [
             `${distPath}/`,
             `${devPath}/`
@@ -148,13 +148,14 @@ gulp.task('nodemon', cb => {
     });
 });
 
-gulp.task('default', ['devPack', 'nodemon','browser-sync'],() => {
+gulp.task('default', ['devPack', 'nodemon', 'browser-sync'], () => {
     gulp.watch([
-        `${distPath}/**/*.+(css|js|png|jpg|ttf)`,
-        `${serverPath}/views/**/*.art`])
+            `${distPath}/**/*.+(css|js|png|jpg|ttf)`,
+            `${serverPath}/views/**/*.art`
+        ])
         .on('change', browserSync.reload);
 
-    gulp.watch([`${devPath}/sass/*.scss`], ['buildStyle']);
+    gulp.watch([`${devPath}/sass/**/*.scss`], ['buildStyle']);
     gulp.watch([`${devPath}/js/**/*`], ['buildJs']);
     gulp.watch([`${devPath}/images/**/*`], ['packImages']);
 });
@@ -169,7 +170,7 @@ const gulpSSH = new GulpSSH({
 })
 
 gulp.task('execSSH', () => {
-    return gulpSSH.shell(sshConfig.commands, {filePath: 'commands.log'})
+    return gulpSSH.shell(sshConfig.commands, { filePath: 'commands.log' })
         .pipe(gulp.dest('logs'))
 });
 

@@ -3,18 +3,16 @@ module.exports = {
      * Application configuration section
      * http://pm2.keymetrics.io/docs/usage/application-declaration/
      */
-    apps: [
-        {
-            name: 'scapp',
-            script: './bin/www',
-            env: {
-                COMMON_VARIABLE: 'true'
-            },
-            env_production: {
-                NODE_ENV: 'production'
-            }
+    apps: [{
+        name: 'demo',
+        script: './Server/bin/www',
+        env: {
+            COMMON_VARIABLE: 'true'
+        },
+        env_production: {
+            NODE_ENV: 'production'
         }
-    ],
+    }],
 
     /**
      * Deployment section
@@ -23,11 +21,11 @@ module.exports = {
     deploy: {
         production: {
             user: 'root',
-            host: '218.22.2.29',
-            port: '35005',
+            host: '11.11.11.11',
+            port: '22',
             ref: 'origin/master',
-            repo: 'git@ah.qwang.top:front-end/doubleGen_Mobile_SSR.git',
-            path: '/data/wwwroot/sc_mobile',
+            repo: 'git@github.com:wenyuking/koa-requirejs-kit.git',
+            path: '/data/wwwroot/demo',
             'post-deploy': 'npm install --production && pm2 reload ecosystem.config.js --env production',
             env: {
                 NODE_ENV: 'production'
@@ -35,11 +33,11 @@ module.exports = {
         },
         dev: {
             user: 'root',
-            host: '36.7.136.3',
-            port: '4922',
+            host: '22.22.22.22',
+            port: '22',
             ref: 'origin/master',
-            repo: 'git@ah.qwang.top:front-end/doubleGen_Mobile_SSR.git',
-            path: '/home/wwwroot/sc_mobile',
+            repo: 'git@github.com:wenyuking/koa-requirejs-kit.git',
+            path: '/home/wwwroot/demo',
             'post-deploy': 'npm install --production && pm2 reload ecosystem.config.js --env production',
             env: {
                 NODE_ENV: 'dev'

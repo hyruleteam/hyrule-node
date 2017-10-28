@@ -1,36 +1,34 @@
 module.exports = {
-    dev:{
+    dev: {
         version: '1.0.0',
         env: 'yl server',
         // 上传配置
         ssh: {
-            //host: '172.16.5.49',
-            host: '36.7.136.3',
-            port: 4922,
+            host: '22.22.22.22',
+            port: 22,
             username: 'root',
-            password:'abc123'
+            password: '123'
         },
-        remoteDir: `/home/wwwroot/sc_mobile/current/public`,
+        remoteDir: `/home/wwwroot/demo`,
         commands: [
             // 删除现有文件
-            // `rm -rf /home/wwwroot/sc_mobile/current/public`
-            `gulp qwui`
+            `rm -rf /home/wwwroot/demo`
         ]
     },
-    production:{
+    production: {
         version: '1.0.0',
         env: 'yl server',
         // 上传配置
         ssh: {
-            host: '218.22.2.29',
-            port: 35005,
+            host: '22.22.22.22',
+            port: 22,
             username: 'root',
-            password:'scPt#2017'
+            password: '123'
         },
-        remoteDir: `/data/wwwroot/sc_mobile/current/public`,
+        remoteDir: `/home/wwwroot/demo`,
         commands: [
             // 删除现有文件
-            `rm -rf /data/wwwroot/sc_mobile/current/public`
+            `rm -rf /home/wwwroot/demo`
         ]
-    }
+    },
 }

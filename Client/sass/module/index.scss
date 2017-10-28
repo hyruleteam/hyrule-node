@@ -1,0 +1,43 @@
+.m-topics-list {
+    .item {
+        display: block;
+        color: rgb(73, 73, 73);
+        font-weight: 600;
+        font-size: rem(30);
+        border-bottom: 1px solid #eee;
+        padding: rem(10) rem(30);
+        @include text-line(1);
+        img {
+            width: rem(50);
+            height: rem(50);
+            vertical-align: middle;
+        }
+        span {
+            font-weight: 300;
+        }
+    }
+}
+
+.m-topics-title {
+    word-break: break-word!important;
+    word-break: break-all;
+    font-weight: 600;
+    font-size: rem(36);
+    padding: rem(10) rem(40);
+}
+
+.m-topics-details {
+    padding: rem(20) rem(40);
+    color: #2f2f2f;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.7;
+    p {
+        margin-bottom: rem(25);
+        word-break: break-word!important;
+        word-break: break-all;
+    }
+    img {
+        max-width: 100%;
+    }
+}

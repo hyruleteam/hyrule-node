@@ -3,37 +3,18 @@
  */
 define(['template'], function(template) {
     /*通用接口地址*/
-    var baseUrl = "http://218.22.2.29:35021/"; //外网
-    var apiCallUrl = baseUrl + "aebizcms/open/api/mobile/"; //通用，上传除外
+    var baseUrl = "https://cnodejs.org/api/v1"; //外网
+    var apiCallUrl = baseUrl + ""; //通用，上传除外
     var uploadUrl = baseUrl + "api/h5/fileupload"; //上传图片专用地址
 
     var rule = template.defaults.rules[1];
     rule.test = new RegExp(rule.test.source.replace('{{', '<\\\?').replace('}}', '\\\?>'));
 
     template.defaults.imports.delHtmlTag = function(value) {
-        if(value !== null) {
-            return value.replace(/<[^>]+>/g,"");
-        }else {
+        if (value !== null) {
+            return value.replace(/<[^>]+>/g, "");
+        } else {
             return value
-        }
-    }
-    template.defaults.imports.getOrderStatus = function (value) {
-
-        switch (value){
-            case 1:
-                return "待付款";
-                break;
-            case 2:
-                return "待完成";
-                break;
-            case 3:
-                return "交易成功";
-                break;
-            case 4:
-                return "交易关闭";
-                break;
-            default:
-                break;
         }
     }
 
@@ -45,7 +26,7 @@ define(['template'], function(template) {
      * @return {[Boolean]} [是否支持的布尔类型结果]
      */
     utils.supportStorage = function() {
-        if(typeof window.localStorage == 'object') {
+        if (typeof window.localStorage == 'object') {
             return true;
         } else {
             return false;
@@ -74,7 +55,7 @@ define(['template'], function(template) {
      * @return {[Object]}      [返回序列化之后的JSON对象]
      */
     utils.parseJson = function(data) {
-        if(data && data.length > 0 && typeof(data) == 'string') {
+        if (data && data.length > 0 && typeof(data) == 'string') {
             return JSON.parse(data);
         }
     }
@@ -85,7 +66,7 @@ define(['template'], function(template) {
      * @return {[String]}      [返回字符串后的JSON字符串]
      */
     utils.stringJson = function(data) {
-        if(data && typeof(data) == 'object') {
+        if (data && typeof(data) == 'object') {
             return JSON.stringify(data);
         }
     }
@@ -99,7 +80,7 @@ define(['template'], function(template) {
     utils.getQueryString = function(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
         var r = window.location.search.substr(1).match(reg);
-        if(r != null) return decodeURIComponent(r[2]);
+        if (r != null) return decodeURIComponent(r[2]);
         return null;
     }
 
@@ -111,13 +92,13 @@ define(['template'], function(template) {
     utils.cloneObj = function(obj) {
         var str, newobj = obj.constructor === Array ? [] : {};
 
-        if(typeof obj !== 'object') {
+        if (typeof obj !== 'object') {
             return;
-        } else if(window.JSON) {
+        } else if (window.JSON) {
             str = decoration.base.stringJson(obj),
                 newobj = decoration.base.parseJson(str);
         } else {
-            for(var i in obj) {
+            for (var i in obj) {
                 newobj[i] = typeof obj[i] === 'object' ? cloneObj(obj[i]) : obj[i];
             }
         }
@@ -126,9 +107,7 @@ define(['template'], function(template) {
     };
 
     utils.sendAjax = function(jsonParam, cb, error, async) {
-        var Url = apiCallUrl+jsonParam.opeType;
-        console.log(Url);
-        console.log(jsonParam.data);
+        var Url = apiCallUrl + jsonParam.opeType;
         $.ajax({
             url: Url,
             type: 'post',
@@ -137,15 +116,15 @@ define(['template'], function(template) {
             success: function(data) {
                 var code = data.code || data.return_code || "";
                 var msg = data.msg || "无返回信息";
-                if(code === 0) {
+                if (code === 0) {
                     cb(data)
-                } else if(code === -1) {
-                    window.location.href = '/login?returnUrl='+ window.location.href;
+                } else if (code === -1) {
+                    window.location.href = '/login?returnUrl=' + window.location.href;
                     return false;
                 } else {
                     $.toast(msg);
 
-                    if(error === undefined) {
+                    if (error === undefined) {
                         return
                     } else {
                         error(data)
@@ -165,10 +144,10 @@ define(['template'], function(template) {
     utils.singleFileUpload = function(obj) {
         $(".loading").removeClass("hide");
         var maxSize = 500 * 1024;
-        if(!obj[0].files.length) return;
+        if (!obj[0].files.length) return;
         var files = Array.prototype.slice.call(obj[0].files);
 
-        if(files.length > 1) {
+        if (files.length > 1) {
             alert("最多只能选择1张图片");
             return;
         }
@@ -179,10 +158,10 @@ define(['template'], function(template) {
         var location = obj.val();
         var point = location.lastIndexOf(".");
         var type = location.substr(point);
-        if(type == ".jpg" || type == ".jpeg" || type == ".JPG" || type == ".JPEG" || type == ".PNG" || type == ".png") {
+        if (type == ".jpg" || type == ".jpeg" || type == ".JPG" || type == ".JPEG" || type == ".PNG" || type == ".png") {
             img = document.createElement("img");
             img.src = location;
-            if(img.fileSize > maxSize) {
+            if (img.fileSize > maxSize) {
                 $.toast("图片尺寸请不要大于500KB");
                 obj.show();
                 return;
@@ -281,7 +260,7 @@ define(['template'], function(template) {
         $(".content").off('scroll').on('scroll', function() {
             nScrollHight = $(this)[0].scrollHeight;
             nScrollTop = $(this)[0].scrollTop;
-            if(nScrollTop + nDivHight >= nScrollHight) {
+            if (nScrollTop + nDivHight >= nScrollHight) {
                 cb();
             }
 
@@ -313,7 +292,7 @@ define(['template'], function(template) {
 
     utils.isWechat = function() {
         var ua = navigator.userAgent.toLowerCase();
-        if(ua.match(/MicroMessenger/i) == "micromessenger") {
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
             return true;
         } else {
             return false;
@@ -321,17 +300,17 @@ define(['template'], function(template) {
     }
 
     utils.auth = {}
-    utils.auth.getUserInfo = function(){
+    utils.auth.getUserInfo = function() {
         var user = utils.parseJson(localStorage.getItem('user')),
             token = localStorage.getItem('token');
 
-        if(user && token){
+        if (user && token) {
             return {
-                user:user,
-                token:token
+                user: user,
+                token: token
             }
-        }else{
-            window.location.href='/login?returnUrl='+window.location.href
+        } else {
+            window.location.href = '/login?returnUrl=' + window.location.href
         }
     };
 
