@@ -1,0 +1,110 @@
+.buy-success{
+  text-align: center;
+  background: #fff;
+  padding-top: rem(63);
+  padding-bottom: rem(40);
+  border-bottom: 1px solid #ecedf0;
+  img{
+    width: rem(39);
+    height: rem(38);
+    vertical-align: middle;
+    margin-right: rem(15);
+    margin-top: rem(-7);
+  }
+  font-size: rem(30);
+  color: #000;
+ p{
+   font-size: rem(26);
+   margin-top: rem(43);
+   span{
+     font-size: rem(30);
+     color: #f23030;
+   }
+ }
+}
+.contact-info {
+  margin-top: rem(22);
+  background: #fff;
+  height: rem(115);
+  line-height: rem(115);
+  text-align: center;
+  font-size: rem(30);
+  color: #000;
+  border-bottom: 1px solid #ecedf0;
+  border-top: 1px solid #ecedf0;
+}
+.tel-list{
+  padding-left: rem(50);
+  padding-top: rem(50);
+  li{
+    overflow: hidden;
+    margin-bottom: rem(40);
+
+  }
+  label.label-checkbox i.icon-form-checkbox{
+    width: rem(41) !important;
+    height:rem(41) !important;
+    display: inherit !important;
+    background-color: #fff !important;
+
+  }
+  label.label-checkbox input[type="radio"]:checked + .item-media i.icon-form-checkbox::after{
+
+    width: rem(41) !important;
+    height:rem(41) !important;
+    background: url("../images/confirm-red.png");
+    background-size: 100% !important;
+    left:0 !important;
+    top: 0 !important;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+
+  }
+  .item-inner{
+    font-size: rem(30);
+    color: #373737;
+    margin-left: rem(30);
+  }
+}
+.new-tel {
+  margin: rem(30);
+  background: #fff;
+  height: rem(295);
+  border: 1px solid #d0d0d0;
+  padding: rem(42);
+  .tel{
+    border-bottom: 1px solid #eeeeee;
+    input{
+      border: none;
+      margin-bottom: rem(10);
+      color: #333333;
+      width: 100%;
+      font-size: rem(28);
+    }
+  }
+  .code-box{
+    border-bottom: 1px solid #eeeeee;
+    margin-top: rem(35);
+    padding-bottom: rem(15);
+    input{
+      border: none;
+      width: rem(420);
+      height: rem(55);
+      font-size: rem(28);
+      color: #333333;
+    }
+    .code{
+      width: rem(180);
+      height: rem(55);
+      background: #f23030;
+
+      border-radius: rem(5);
+      text-align: center;
+      line-height: rem(55);
+      a{
+        color: #fff;
+        font-size: rem(28);
+      }
+    }
+  }
+}

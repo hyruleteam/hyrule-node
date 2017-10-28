@@ -1,0 +1,119 @@
+.warm-tip {
+  font-size: rem(28);
+  color: #333333;
+  width: rem(707);
+  font-weight: 600;
+  margin: 0 auto;
+  padding: rem(42) rem(0) rem(28) rem(15);
+
+}
+
+.activity-name {
+  width: rem(682);
+  min-height: rem(360);
+  margin: 0 auto;
+  margin-bottom: rem(50);
+  overflow: hidden;
+}
+
+.activity-detail {
+  color: #fff;
+  padding-left: rem(120);
+  padding-top: rem(36);
+  padding-bottom: rem(16);
+  font-size: rem(28);
+  background-color: #277ec1;
+  border-radius: 5px 5px 0 0;
+  position: relative;
+  .bgicon {
+    position: absolute;
+    left: rem(20);
+    top: rem(40);
+    img {
+      width: rem(72);
+      height: rem(77);
+    }
+  }
+  p {
+    line-height: 1.7em;
+  }
+}
+
+.activity-hr{
+  height:rem(7);
+  background-image: url("../images/service/ac-hr.png");
+  background-repeat: repeat-x;
+}
+
+.activity-date {
+  padding:rem(36) rem(42);
+  font-size: rem(24);
+  color: #585858;
+  background-color: #fff;
+  p {
+    line-height: 2em;
+  }
+}
+
+.sign-up-form {
+  background-color: #fff;
+  width: 100%;
+  padding: rem(60) rem(36) rem(180) rem(47);
+  .submit {
+    border: none;
+    width: rem(345);
+    line-height: rem(67);
+    text-align: center;
+    color: #fff;
+    font-size: rem(30);
+    background-color: #de2d33;
+    border-radius: rem(15);
+    margin-top: rem(38);
+  }
+}
+
+.form-title {
+  font-size: rem(30);
+  color: #000000;
+  margin-bottom: rem(44);
+  font-weight: 600;
+}
+
+.small-tip {
+  color: #1ca7b1;
+  font-size: rem(24);
+  font-weight: normal;
+}
+
+.form-item {
+  border:1px solid #e6e6e6;
+  margin-bottom: rem(22);
+  height:rem(64);
+  input {
+    width: rem(500);
+    height: rem(60);
+    border: none;
+    text-indent: rem(20);
+    font-size: rem(28);
+
+  }
+  .label {
+    width: rem(158);
+    text-align: center;
+    line-height: rem(60);
+    font-size: rem(28);
+    color: #000000;
+    opacity: 0.9;
+    border-right: rem(1) dashed #e6e6e6;
+  }
+
+}
+
+.icon-search {
+  width: rem(35);
+  height: rem(34);
+  vertical-align: middle;
+  background-image: url(../images/search.png);
+  display: inline-block;
+  background-size: 100%;
+}

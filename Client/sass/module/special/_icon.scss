@@ -1,0 +1,29 @@
+.ico-sp-op-1{
+  @include icon-base(53,44,'../images/special/sp-op-1.png');
+}
+
+.ico-sp-op-2{
+  @include icon-base(46,44,'../images/special/sp-op-2.png');
+}
+
+.ico-sp-op-3{
+  @include icon-base(46,46,'../images/special/sp-op-3.png');
+}
+
+.ico-sp-arrow{
+  @include icon-base(28,19,'../images/special/sp_arrow.png');
+}
+
+.ico-sp-arrow-s{
+  @include icon-base(13,19,'../images/special/sp_arrow_s.png');
+}
+
+.ico-sp-dt-1 {
+  @include icon-base(26,26,'../images/special/sp-dt-1.png');
+}
+
+@for $i from 2 through 5 {
+  .ico-sp-dt-#{$i} {
+    @include icon-base(40,40,'../images/special/sp-dt-#{$i}.png');
+  }
+}

@@ -1,0 +1,66 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+            @mixin -back {
+            background-position: 0 -141/(24-165)*100%;
+            }
+
+            @mixin -collect {
+            background-position: 0 -45/(31-165)*100%;
+            }
+
+            @mixin -ele-card {
+            background-position: 0 -99/(23-165)*100%;
+            }
+
+            @mixin -icon_1 {
+            background-position: 0 -99/(32-165)*100%;
+            }
+
+            @mixin -icon_2 {
+            background-position: 0 -48/(37-165)*100%;
+            }
+
+            @mixin -icon_3 {
+            background-position: 0 0/(35-165)*100%;
+            }
+
+            @mixin -icon_4 {
+            background-position: 0 -49/(34-165)*100%;
+            }
+
+            @mixin -icon_5 {
+            background-position: 0 0/(38-165)*100%;
+            }
+
+            @mixin -icon_6 {
+            background-position: 0 -49/(40-165)*100%;
+            }
+
+            @mixin -icon_7 {
+            background-position: 0 0/(39-165)*100%;
+            }
+
+            @mixin -notice {
+            background-position: 0 -86/(30-165)*100%;
+            }
+
+            @mixin -setting {
+            background-position: 0 0/(36-165)*100%;
+            }
+
+        .spritesheet {
+        background-image: url('../images/sprite/personal.png');
+        background-repeat: no-repeat;
+        background-size: rem(172) rem(165);
+        }
+
+

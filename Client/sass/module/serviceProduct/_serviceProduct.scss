@@ -1,0 +1,23 @@
+.loading-page{
+  text-align: center;
+  font-size: rem(24);
+  margin: rem(20) 0;
+  img{
+    width: rem(37);
+    height: rem(37);
+    vertical-align: middle;
+    margin-right: rem(20);
+  }
+  .load{
+    animation: load 1s infinite ease-in-out;
+  }
+}
+
+@keyframes load{
+  0% {transform: rotate(0deg)}
+  25% {transform: rotate(90deg)}
+  50% {transform: rotate(180deg)}
+  75% {transform: rotate(270deg)}
+  100% {transform: rotate(360deg)}
+}
+

@@ -1,0 +1,13 @@
+.u-star{
+  overflow: hidden;
+  .ico-star{
+    float: left;
+    margin-right: 2px;
+    @include icon-base(21,20,'../images/public/star.png');
+  }
+  .ico-star_ac{
+    float: left;
+    margin-right: 2px;
+    @include icon-base(21,20,'../images/public/star_active.png');
+  }
+}

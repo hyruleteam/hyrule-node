@@ -1,0 +1,303 @@
+.m-order-hd {
+    ul {
+        display: flex;
+        border-bottom: rem(2) solid #f5f5f5;
+    }
+    li {
+        width: 20%;
+        height: rem(70);
+        line-height: rem(70);
+        text-align: center;
+        font-size: rem(26);
+        color: #2b2b2b;
+        &.active {
+            color: #ff6700;
+            span {
+                display: inline-block;
+                padding: rem(0) rem(2);
+                border-bottom: rem(4) solid #ff6700;
+            }
+        }
+    }
+    &:after {
+        content: "";
+        display: block;
+        height: rem(2);
+        background: #f5f5f5;
+    }
+}
+
+.icon-txt {
+    img {
+        width: rem(28);
+        height: rem(24);
+        vertical-align: rem(-4);
+        margin-right: rem(25);
+    }
+}
+
+.m-order-list {
+    a {
+        color: #2b2b2b;
+    }
+    .mol-sub {
+        color: #2b2b2b;
+        &:after {
+            content: "";
+            display: block;
+            height: rem(20);
+            background-color: #f4f4f4;
+        }
+    }
+    .mol-hd {
+        height: rem(72);
+        line-height: rem(72);
+        font-size: rem(24);
+        padding: rem(0) rem(20);
+    }
+    .state {
+        color: #ff6700;
+        font-size: rem(24);
+    }
+    .mol-bd {
+        padding: rem(0) rem(20);
+        background-color: #fafafa;
+    }
+    .mol-pic {
+        img {
+            width: rem(138);
+            height: rem(138);
+            margin: rem(10) rem(0);
+        }
+    }
+    .mol-mess {
+        width: rem(570);
+        padding-top: rem(12);
+        padding-left: rem(18);
+    }
+
+    .sup-attr {
+        width: rem(410);
+        height: rem(96);
+        color: #9b9b9b;
+        font-size: rem(24);
+        line-height: 1.4em;
+        overflow-y: hidden;
+    }
+    .hj {
+        padding-top: rem(5);
+        height: rem(72);
+        line-height: rem(64);
+        font-size: rem(22);
+        padding-right: rem(20);
+        border-bottom: rem(2) solid #f5f5f5;
+    }
+    .total-money {
+        font-size: rem(26);
+    }
+    .bottons {
+        height: rem(72);
+        padding-right: rem(20);
+        line-height: rem(72);
+        a {
+            width: rem(136);
+            height: rem(50);
+            border: rem(1) solid #dcdcdc;
+            border-radius: rem(50);
+            text-align: center;
+            background-color: #fff;
+            margin-left: rem(14);
+            line-height: rem(50);
+            &.active {
+                border: rem(1) solid #ff6700;
+                color: #ff6700;
+            }
+        }
+    }
+}
+
+.pop-pay,.pop-pay-way {
+    height: auto;
+    bottom: 0;
+    top: initial;
+}
+
+.close-icon {
+    display: inline-block;
+    width: rem(25);
+    height: rem(25);
+    vertical-align: middle;
+    background-image: url(../images/close-icon.png);
+    background-size: 100%;
+}
+
+.pop-pay {
+    .close-icon-wrap{
+        line-height: rem(106);
+        padding-left: rem(36);
+    }
+    .m-popup-hd {
+        height: rem(106);
+        line-height: rem(106);
+        font-size: rem(36);
+        color: #2b2b2b;
+        border-bottom: rem(2) solid #f2f2f2;
+    }
+    .aplay-money{
+        font-size: rem(60);
+        color: #000;
+        line-height: rem(130);
+    }
+    .aplay-number{
+        padding-right: rem(35);
+        color: #000000;
+        font-size: rem(28);
+    }
+    .aplay-tool{
+        padding-right: rem(26);
+        color: #000000;
+        font-size: rem(28);
+    }
+    .aplay-way-wrap{
+        padding-left: rem(25);
+        li{
+            border-bottom: rem(1) solid #f2f2f2;
+            height: rem(80);
+            line-height: rem(80);
+            color: #888888;
+            font-size: rem(30);
+        }
+
+    }
+    .icon-you{
+        display: inline-block;
+        width: rem(14);
+        height: rem(24);
+        vertical-align: middle;
+        background-size: 100%;
+        margin-left: rem(18);
+        background-image: url(../images/pay/icon-you.png);
+    }
+    .m-popup-ft{
+        margin-top: rem(432);
+        margin-bottom: rem(26);
+    }
+    .pay-btn{
+        background-color: #ea7777;
+        width: rem(698);
+        height: rem(79);
+        line-height: rem(79);
+        color: #fff;
+        font-size: rem(32);
+        border:none;
+        border-radius: rem(10);
+
+    }
+}
+.pop-pay-way{
+     color: #2b2b2b;
+
+     .icon-left{
+        margin-left: rem(28);
+     }
+    .m-popup-hd{
+        height: rem(106);
+        line-height: rem(106);
+        font-size: rem(36);
+        border-bottom: rem(2) solid #f2f2f2;
+
+    }
+    .icon{
+        display: inline-block;
+        
+        background-size: 100%;
+        vertical-align: middle;
+        margin-right: rem(22);
+        background-size: 100%;
+
+    }
+    .icon-apily{
+        width: rem(42);
+        height: rem(42);
+        background-image: url(../images/pay/apily.png);
+    }
+    .icon-weixin{
+        width: rem(46);
+        height: rem(38);
+        background-image: url(../images/pay/weixin.png);
+
+    }
+    .icon-bank{
+        width: rem(47);
+        height: rem(32);
+        background-image: url(../images/pay/bank.png);
+    }
+    .icon-xianxia{
+        width: rem(43);
+        height: rem(41);
+        background-image: url(../images/pay/xianxia.png);
+    }
+
+    .raio-icon{
+        padding-right: rem(26);
+    }
+    .i-check{
+        display: inline-block;
+            width: rem(24);
+            height: rem(17);
+        &.active{
+            
+            background-image: url(../images/pay/check.png);
+            background-size: 100%;
+
+        }
+    } 
+    ul{
+        padding-left: rem(26);
+        padding-bottom: rem(395);
+    }
+    li{
+        height: rem(108);
+        line-height: rem(108);
+        border-bottom: rem(2) solid #f2f2f2;
+        font-size: rem(28);
+       
+    }  
+    .recommend{
+        background-color: #26a78d;
+        color: #fff;
+        padding:rem(2);
+        border-radius: rem(3);
+        margin-left: rem(20);
+    }    
+}
+.search-icon{
+    display: inline-block;
+    background-size: 100%;
+    vertical-align: middle;
+    width: rem(39);
+    height: rem(39);
+    background-image: url(../images/pay/search-icon.png);
+}
+.suolue-icon{
+    display: inline-block;
+    background-size: 100%;
+    vertical-align: middle;
+    width: rem(33);
+    height: rem(7);
+    margin-left: rem(25);
+    background-image: url(../images/pay/suolue.png);
+}
+.mess-icon{
+    
+    position: absolute;
+    width: rem(33);
+    height: rem(33);
+    line-height: rem(33);
+    background-color: #fff;
+    color: #ea7777;
+    font-size: rem(22);
+    border-radius: 50%;
+    top:rem(12);
+    right: rem(-12);
+}

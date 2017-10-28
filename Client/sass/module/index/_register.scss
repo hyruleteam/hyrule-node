@@ -1,0 +1,72 @@
+
+.m-register{
+    .logo{
+        text-align: center;
+        padding: rem(95) 0;
+        img{
+            width: rem(383);
+            height: rem(93);
+        }
+    }
+    ul{
+        padding: 0 rem(45);
+    }
+    li{
+        position: relative;
+    }
+    .item-input{
+        width: 100%;
+        height: rem(95);
+        border: none;
+        font-size: rem(28);
+        color: #8d8d8d;
+        padding: 0 rem(20);
+        border: 2px solid #eee;
+        border-radius: 5px;
+        caret-color:#f85900;
+        margin-bottom: rem(33);
+    }
+    .item-code{
+        width: rem(385);
+    }
+    [type=tel]{
+        color: #000;
+        font-size: rem(28);
+    }
+    .getcode{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: rem(250);
+        height: rem(95);
+        border: rem(1) solid #e0dee0;
+        font-size: rem(30);
+        color: #000000;
+        text-align: center;
+        line-height: rem(95);
+        border-radius: 5px;
+
+    }
+    .register-btn{
+        width: 100%;
+        height: rem(85);
+        background: #f85900;
+        color: #fff;
+        border: none;
+        border-radius: rem(15);
+        font-size: rem(35);
+        margin: rem(40) 0;
+    }
+    .notes{
+        font-size: rem(26);
+        color: #585858;
+        text-align: center;
+        a{
+            text-decoration: underline;
+            color: #585858;
+        }
+    }
+}
+.accountType{
+    visibility: hidden;
+}

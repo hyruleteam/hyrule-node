@@ -1,0 +1,10 @@
+.icon-normal{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.icon-sp_arrow{
+  display: inline-block;
+  @extend .spritesheet;
+  @include -sp-op-1;
+}

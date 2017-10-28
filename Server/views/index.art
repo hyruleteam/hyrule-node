@@ -1,0 +1,158 @@
+{{include './include/header.art'}}
+<div class="page-group">
+    <div class="page page-current" data-module="index" id="index">
+        <!-- bar -->
+        <header class="bar bar-nav m-index-search">
+            <!--<a class="button button-link button-nav pull-left" onClick="javascript:history.back(-1);">
+                <i class="iconfont icon-left"></i>返回上一页
+            </a>
+            <h1 class="title">首页</h1>-->
+            <img src="../images/index/search.png"  class="serarch-icon">
+            <input type="text" placeholder="搜索您所需要的资讯或服务" />
+            <a href="#" class="mess external"><img src="../images/index/mess.png"/></a>
+        </header>
+        {{include './include/navbar.art' act}}
+        <div class="content bg-grey">
+            <!-- content -->
+            <!--swiper-->
+            <div class="swiper-container index-banner" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">
+                <div class="swiper-wrapper">
+                    {{each carousel val key}}
+                    <div class="swiper-slide"><img src="{{imgUrl+val.has_title_img}}" alt=""></div>
+                    {{/each }}
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+                <!-- 如果需要导航按钮 -->
+                <!--<div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>-->
+            </div>
+            <!--end-->
+            <!--category-->
+            <div class="m-index-category">
+                <ul>
+                    <li>
+                        <a href="/serviceNeedsList">
+                            <img src="../images/index/item1.png"/>
+                            <p>需求</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/serviceProduct">
+                            <img src="../images/index/item2.png"/>
+                            <p>服务</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/specialLists">
+                            <img src="../images/index/item3.png"/>
+                            <p>专家</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/serviceList">
+                            <img src="../images/index/item4.png"/>
+                            <p>活动</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--end-->
+            <!--政策资讯-->
+            <div class="u-index-tit">
+                <i></i>双创资讯<a href="/consultList" class="more">更多 ></a>
+            </div>
+            <ul class="m-news-list">
+                {{each content cnt key}}
+                <li>
+                    <a href="/consultDetail/{{cnt.id}}" class="f-cb">
+                        <div class="h3 f-toe">{{cnt.title}}</div>
+                        <!--<div class="remark">摘要：</div>-->
+                        <div class="fd f-cb">{{cnt.opAt*1000 | dateFormater 'YYYY-MM-DD'}}<span class="care f-fr"><i></i>0</span></div>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+            <!--end-->
+            <!--推荐专家-->
+            <div class="u-index-tit">
+                <i></i>推荐专家<a href="/specialLists" class="more">更多 ></a>
+            </div>
+            <div class="m-expert-list">
+                <ul>
+                    {{each expert ep key}}
+                    <li>
+                        <a href="/specialDetails/{{ep.id}}">
+                            <img src="{{ep.head}}"/>
+                            <div class="f-tac">
+                                <div class="name">{{ep.name}}</div>
+                                <div class="profession">{{ep.expertin}}</div>
+                            </div>
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            <!--end-->
+            <!--热门服务产品-->
+            <div class="u-index-tit">
+                <i></i>热门服务产品<a href="/serviceProduct" class="more">更多 ></a>
+            </div>
+            <ul class="m-serive-list">
+                {{each hotService hot key}}
+                <li>
+                    <a href="/serviceProductDetail/{{hot.id}}">
+                        <img src="../images/list1.png" alt="" />
+                        <div class="item-inner">
+                            <div class="h3" style="width: 4rem">{{hot.service_name}}</div>
+                            <div class="u-stars"><i style="width: 60%;"></i></div>
+                            <div class="remark">{{hot.service_procedure}}</div>
+                            <div class="fd"><label>收费标准：</label>{{hot.charge_method}}</div>
+                        </div>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+            <!--end-->
+            <!--热推机构-->
+            <div class="u-index-tit">
+                <i></i>热推机构<a href="/serviceOrganization" class="more">更多 ></a>
+            </div>
+            <div class="m-org-list">
+                <ul>
+                    {{each org or key}}
+                    <li>
+                        <a href="serviceAgentDetail/{{or.id}}">
+                            {{if or.signed === 1}}
+                            <span class="org-tags"></span>
+                            {{/if}}
+                            <img src="{{or.photo}}"/>
+                            <div class="f-tac">
+                                <div class="name">{{or.org_name}}</div>
+                            </div>
+                        </a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            <!--end-->
+            <!--最新需求-->
+            <div class="u-index-tit">
+                <i></i>最新需求<a href="/serviceNeedsList" class="more">更多 ></a>
+            </div>
+            <ul class="m-demand-list">
+                {{each requirement requ key}}
+                <li>
+                    <a href="/servicedemandDetail/{{requ.id}}">
+                        <div class="h3"><i></i>{{requ.title}}<span class="price">￥{{requ.price}}</span></div>
+                        <div class="remark">{{requ.remark | delHtmlTag}}</div>
+                        <div class="fd f-cb">联系电话：{{requ.tel | formatPhone}}</div>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+            <!--end-->
+        </div>
+    </div>
+</div>
+{{include './include/footer.art'}}

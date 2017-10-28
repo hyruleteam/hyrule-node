@@ -1,0 +1,67 @@
+// base layout
+
+/* Here is the foundation layout，we use the 'g-' named after.
+ * just like g-hd ==> head  g-bd ==> body g-ft ==> footer
+ */
+
+
+/* clearfix
+ */
+
+.row:before,
+.row:after,
+.g-box:before,
+.g-box:after,
+.m-topbar:before,
+.m-topbar:after,
+.m-head:before,
+.m-head:after,
+.clearfix:before,
+.clearfix:after,
+.g-box-1236:before,
+.g-box-1236:after,
+.pd-info-slidebox:before,
+.pd-info-slidebox:after,
+.store-info:after,
+.store-info:before {
+    display: table;
+    content: " ";
+}
+
+.row:after,
+.g-box:after,
+.m-topbar:after,
+.m-head:after,
+.clearfix:after,
+.g-box-1236:after,
+.pd-info-slidebox:after,
+.store-info:after {
+    clear: both;
+}
+
+
+/* The container layout
+ * This is a page's outer package container，We use the 1200px width to set the pagewidth
+ */
+
+.g-box {
+    width: 1200px;
+    margin: 0 auto;
+
+}
+
+.g-box-1236{
+    width: 1236px;
+    margin: 0 auto;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+//header,
+//body {
+//    width: 10rem;
+//    margin-left: auto;
+//    margin-right: auto;
+//}

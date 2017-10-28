@@ -1,0 +1,12 @@
+{{include './include/header.art'}}
+<div class="page-group">
+    <div class="page page-current" data-module="register" >
+        <!-- bar -->
+        {{include './include/headbar.art' title}}
+        <div class="content m-guide error">
+            <h1>页面找不到了！</h1>
+        </div>
+    </div>
+
+</div>
+{{include './include/footer.art' }}

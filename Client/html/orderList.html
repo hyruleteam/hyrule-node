@@ -1,0 +1,223 @@
+@@include('include/_header.html',{"title": "我的订单"})
+<div class="page-group">
+    <div class="page page-current order-list" data-module="consultation">
+        <!-- bar -->
+        <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left" onClick="javascript:history.back(-1);">
+                <i class="icon-left"></i>
+
+            </a>
+            <h1 class="title">我的订单</h1>
+            <div class="button button-link button-nav f-fr">
+                <i class="search-icon"></i>
+                <i class="suolue-icon"></i>
+                <i class="mess-icon">1</i>
+            </div>
+        </header>
+        <!-- content -->
+        <div class="content">
+            <div class="m-order-hd">
+                <ul>
+                    <li class="active"><span>全部</span></li>
+                    <li><span>待付款</span></li>
+                    <li><span>待完成</span></li>
+                    <li><span>待评价</span></li>
+                    <li><span>投诉</span></li>
+                </ul>
+            </div>
+            <div class="m-order-list">
+                <ul>
+                    <li class="mol-sub">
+                        <div class="mol-hd">
+                            <a href="" class="f-df">
+                                <div class="icon-txt"><img src="../images/slogo.png" alt="LOGO" />产品信息</div>
+                                <span class="state">等待需求方付款</span>
+                            </a>
+                        </div>
+                        <div class="mol-bd">
+                            <div class="mol-bd-sub f-cb">
+                                <div class="mol-pic f-fl "><img src="../images/product.png" /></div>
+                                <div class="mol-mess f-fl">
+                                    <h5>精益经营共赢式咨询<span class="pirce f-fr">￥135.00</span></h5>
+                                    <div class="sup-attr">对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深</div>
+                                </div>
+                            </div>
+                            <!-- <div class="mol-bd-sub f-cb">
+                                <div class="mol-pic f-fl "><img src="../images/product.png" /></div>
+                                <div class="mol-mess f-fl">
+                                    <h5>精益经营共赢式咨询<span class="pirce f-fr">￥135.00</span></h5>
+                                    <div class="sup-attr">对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深</div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="mol-fd">
+                            <div class="f-cb hj">
+                                <div class="f-fr ">共3件商品 合计：<span class="total-money">￥2,900</span>(含电子券抵扣￥0.00)</div>
+                            </div>
+                            <div class="bottons f-tar">
+                                <button>查看订单</button>
+                                <button>取消订单</button>
+                                <button class="active open-popup" data-popup=".pop-pay">确认支付</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mol-sub">
+                        <div class="mol-hd">
+                            <a href="" class="f-df">
+                                <div class="icon-txt"><img src="../images/slogo.png" alt="LOGO" />产品信息</div>
+                                <span class="state">需求方已付款</span>
+                            </a>
+                        </div>
+                        <div class="mol-bd">
+                            <div class="mol-bd-sub f-cb">
+                                <div class="mol-pic f-fl "><img src="../images/product.png" /></div>
+                                <div class="mol-mess f-fl">
+                                    <h5>精益经营共赢式咨询<span class="pirce f-fr">￥135.00</span></h5>
+                                    <div class="sup-attr">对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深</div>
+                                </div>
+                            </div>
+                            <!-- <div class="mol-bd-sub f-cb">
+                                <div class="mol-pic f-fl "><img src="../images/product.png" /></div>
+                                <div class="mol-mess f-fl">
+                                    <h5>精益经营共赢式咨询<span class="pirce f-fr">￥135.00</span></h5>
+                                    <div class="sup-attr">对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深</div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="mol-fd">
+                            <div class="f-cb hj">
+                                <div class="f-fr ">共3件商品 合计：<span class="total-money">￥2,900</span>(含电子券抵扣￥0.00)</div>
+                            </div>
+                            <div class="bottons f-tar">
+                                <button>取消订单</button>
+                                <button class="active">查看详情</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mol-sub">
+                        <div class="mol-hd">
+                            <a href="" class="f-df">
+                                <div class="icon-txt"><img src="../images/slogo.png" alt="LOGO" />产品信息</div>
+                                <span class="state">交易成功</span>
+                            </a>
+                        </div>
+                        <div class="mol-bd">
+                            <div class="mol-bd-sub f-cb">
+                                <div class="mol-pic f-fl "><img src="../images/product.png" /></div>
+                                <div class="mol-mess f-fl">
+                                    <h5>精益经营共赢式咨询<span class="pirce f-fr">￥135.00</span></h5>
+                                    <div class="sup-attr">对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深</div>
+                                </div>
+                            </div>
+                            <!-- <div class="mol-bd-sub f-cb">
+                                <div class="mol-pic f-fl "><img src="../images/product.png" /></div>
+                                <div class="mol-mess f-fl">
+                                    <h5>精益经营共赢式咨询<span class="pirce f-fr">￥135.00</span></h5>
+                                    <div class="sup-attr">对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深</div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="mol-fd">
+                            <div class="f-cb hj">
+                                <div class="f-fr ">共3件商品 合计：<span class="total-money">￥2,900</span>(含电子券抵扣￥0.00)</div>
+                            </div>
+                            <div class="bottons f-tar">
+                                <button>屏蔽评价</button>
+                                <button class="active">查看订单</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="mol-sub">
+                        <div class="mol-hd">
+                            <a href="" class="f-df">
+                                <div class="icon-txt"><img src="../images/slogo.png" alt="LOGO" />产品信息</div>
+                                <span class="state">投诉成功</span>
+                            </a>
+                        </div>
+                        <div class="mol-bd">
+                            <div class="mol-bd-sub f-cb">
+                                <div class="mol-pic f-fl "><img src="../images/product.png" /></div>
+                                <div class="mol-mess f-fl">
+                                    <h5>精益经营共赢式咨询<span class="pirce f-fr">￥135.00</span></h5>
+                                    <div class="sup-attr">对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深</div>
+                                </div>
+                            </div>
+                            <!-- <div class="mol-bd-sub f-cb">
+                                <div class="mol-pic f-fl "><img src="../images/product.png" /></div>
+                                <div class="mol-mess f-fl">
+                                    <h5>精益经营共赢式咨询<span class="pirce f-fr">￥135.00</span></h5>
+                                    <div class="sup-attr">对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深对企业内外部资源和现状进行全方位深</div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="mol-fd">
+                            <div class="f-cb hj">
+                                <div class="f-fr ">共3件商品 合计：<span class="total-money">￥2,900</span>(含电子券抵扣￥0.00)</div>
+                            </div>
+                            <div class="bottons f-tar">
+                                <button>取消订单</button>
+                                <button class="active">确认订单</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        @@include('include/_footerNav.html')
+    </div>
+    <!--弹框一-确认支付-->
+    <div class="popup pop-pay">
+        <div class="m-popup-block">
+            <div class="m-popup-hd f-tac">
+                <div class="f-fl close-icon-wrap">
+                    <span class="close-icon close-popup"></span>
+                </div>
+                确认付款
+            </div>
+            <div class="m-popup-bd">
+                <div class="f-tac aplay-money">￥2900.00</div>
+                <ul class="aplay-way-wrap">
+                    <li>支付宝账号<span class="f-fr aplay-number">182******31</span></li>
+                    <li class="open-popup" data-popup=".pop-pay-way">付款方式<span class="f-fr aplay-tool" >支付宝<i class="icon-you"></i></span></li>
+                </ul>
+            </div>
+            <div class="m-popup-ft f-tac ">
+                <button class="pay-btn">立即付款</button>
+            </div>
+        </div>
+    </div>
+    <!-- 弹框二-支付方式 -->
+    <div class="popup pop-pay-way">
+        <div class="m-popup-block">
+            <div class="m-popup-hd f-tac">
+                <div class="f-fl close-icon-wrap">
+                    <span class="icon-left open-popup" data-popup=".pop-pay"></span>
+                </div>
+                选择支付方式
+            </div>
+            <div class="m-popup-bd">
+                <ul>
+                    <li>
+                        <span class="icon icon-apily"></span> 支付宝
+                        <span class="recommend">推荐</span>
+                        <span class="raio-icon f-fr"><i class="i-check  active"></i></span>
+                    </li>
+                    <li>
+                        <span class="icon icon-weixin"></span>微信支付
+                        <span class="raio-icon f-fr"><i class="i-check "></i>
+                    </li>
+                    <li>
+                        <span class="icon icon-bank"></span>添加银行卡支付
+                        <span class="raio-icon  f-fr"><i class="i-check"></i></span>
+                    </li>
+                    <li>
+                        <span class="icon icon-xianxia"></span>线下支付
+                        <span class="raio-icon f-fr"><i class="i-check "></i></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end-->
+@@include('include/_footer.html')

@@ -1,0 +1,28 @@
+.header-nav{
+  height: rem(85);
+  .bar{
+    height: rem(84);
+    text-align: center;
+    font-size: rem(30);
+    position: fixed;
+    line-height: rem(84);
+    padding: 0;
+    .tab-item{
+      float: left;
+      width: rem(250);
+      color: #333;
+      &.active{
+        border-bottom: 2px solid #de2d33;
+        color: #de2d33;
+      }
+    }
+  }
+
+}
+.m-commit{
+  position: relative;
+  top:rem(30);
+  float: right;
+  color: #28afb5;
+  font-size: rem(28);
+}

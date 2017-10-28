@@ -1,0 +1,51 @@
+@@include('include/_header.html',{"title": "订单支付"})
+<div class="page-group">
+    <div class="page page-current" data-module="index" id="index">
+        <!-- bar -->
+        @@include('include/_navbar.html',{"bartitle": "订单支付"})
+        <div class="content bg-grey">
+            <div class="buy-success">
+                <img src="../images/confirm-green.png" alt="">订单提交成功
+                <p>需要支付预付款: <span>￥200.00元</span></p>
+            </div>
+            <div class="contact-info">
+                请确认联系方式，服务机构将通过该号码联系您
+            </div>
+            <div class="tel-list">
+                <ul>
+                    <li>
+                        <label class="label-checkbox item-content">
+                            <input type="radio" name="my-radio">
+                            <div class="item-media f-fl"><i class="icon icon-form-checkbox"></i></div>
+                            <div class="item-inner f-fl">
+                                18809699775
+                            </div>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="label-checkbox item-content">
+                            <input type="radio" name="my-radio">
+                            <div class="item-media f-fl"><i class="icon icon-form-checkbox"></i></div>
+                            <div class="item-inner f-fl ">
+                                使用其它号码
+                            </div>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="new-tel">
+                <div class="tel">
+                    <input type="text" placeholder="请输入手机号">
+                </div>
+                <div class="code-box f-cb">
+                    <input type="text" placeholder="请输入验证码" class="f-fl">
+                    <div class="code f-fl"><a href="" class="btn">获取验证码</a></div>
+                </div>
+            </div>
+           <div class="green-btn bar bar-tab">
+               <a href="">确认支付200元</a>
+           </div>
+        </div>
+    </div>
+</div>
+@@include('include/_footer.html')

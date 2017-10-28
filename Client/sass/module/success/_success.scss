@@ -1,0 +1,33 @@
+.m-success{
+  padding: rem(40);
+  .logo{
+    margin-top: rem(80);
+    img{
+      display: block;
+      margin: 0 auto;
+      width: rem(217);
+      height: rem(217);
+    }
+  }
+  .info{
+    margin-top: rem(50);
+    font-size: rem(50);
+    color: #000000;
+    text-align: center;
+  }
+  .company{
+    margin-top: rem(65);
+    margin-bottom: rem(50);
+    color: #888888;
+    font-size: rem(35);
+    text-align: center;
+  }
+  .sign-info{
+    padding: rem(40);
+    .name,.time{
+      color: #888888;
+      font-size: rem(28);
+      margin-bottom: rem(20);
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.needs-item-hd{
+    font-size: rem(30);
+    color: #28afb5;
+    // margin-bottom: rem(10);
+    // padding-left: rem(44);
+    // padding-right: rem(38);
+    padding:rem(50) rem(38) rem(10) rem(44);
+} 
+.needs-service-price{
+    color: #eb0000;
+}
+.needs-item-bd{
+    color: #9b9b9b;
+    font-size: rem(28);
+    line-height: rem(56);
+    padding-left: rem(44);
+    padding-right: rem(38);
+    width: rem(750);
+}
+.needs-item{
+    border-bottom: rem(1) solid #e8e8e8;
+    padding-bottom: rem(30);
+    &:last-child{
+        border-bottom: none;
+    }
+}

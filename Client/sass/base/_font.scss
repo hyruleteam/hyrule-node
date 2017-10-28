@@ -1,0 +1,17 @@
+body,textarea,input,button,select,keygen,legend {
+    font: 12px/1.5 "Avenir Light", "PingFangSC-Light", arial, Hiragino Sans GB, \\5b8b体, sans-serif;
+    color: $base-txt-color;
+    outline: 0;
+}
+
+a{
+    display: inline-block;
+    color: $base-txt-color;
+    &:hover{
+        color:darken($base-txt-color,10%);
+    }
+    &:hover,&:visited,&:focus{
+        text-decoration: underline;
+        transition:color .2s ease;
+    }
+}

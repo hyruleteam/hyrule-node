@@ -1,0 +1,26 @@
+/*
+* @Author: jacobwang
+* @Date:   2016-12-11 13:13:33
+* @Email:  wangwenyu@qwang.com.cn
+* @Last Modified by:   jacobwang
+* @Last Modified time: 2016-12-11 13:13:35
+*/
+@function rem($px) {
+    @return $px / $base-font-size * 1rem;
+}
+@mixin text-line($num) {
+    display: -webkit-box;
+    -webkit-line-clamp: $num;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+@mixin icon-base($width,$height,$url) {
+    display: inline-block;
+    vertical-align: middle;
+    width: rem($width);
+    height: rem($height);
+    background-size: rem($width) rem($height);
+    background-image: url($url);
+}

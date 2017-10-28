@@ -1,0 +1,36 @@
+@@include('include/_header.html',{"title": "注册"})
+<div class="page-group">
+	<div class="page page-current" data-module="register" id="register">
+		<!-- bar -->
+		<header class="bar bar-nav m-navbar">
+		    <a class="button button-link button-nav pull-left" onclick="javascript:history.back(-1);">
+		        <i class="iconfont icon-left"></i>
+		    </a>
+		    <h1 class="title">注册</h1>
+		</header>
+		@@include('include/_footerNav.html')
+		<div class="content m-register">
+			<!-- content -->
+			<div class="logo"><img src="../images/logo.png"/></div>
+			<ul>
+				<li class="item">
+					<input class="item-input" type="tel" name="" id="" value="" placeholder="请输入手机号" />
+				</li>
+				<li class="item">
+					<input class="item-input" type="password" name="" id="" value="" placeholder="请输入密码" />
+				</li>
+				<li class="item">
+					<input class="item-input" type="text" name="" id="" value="" placeholder="请输入验证码" />
+					<span class="getcode"><img src="../images/code.png"/></span>
+				</li>
+				<li class="item">
+					<input class="register-btn" type="button" name="" id="" value="立即注册" placeholder="请输入手机号" />
+					<div class="notes">注册即表示同意双创合肥的<a href="#">用户协议</a>和<a href="#">隐私政策</a></div>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+
+</div>
+@@include('include/_footer.html')

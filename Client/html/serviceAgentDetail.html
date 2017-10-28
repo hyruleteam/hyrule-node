@@ -1,0 +1,61 @@
+@@include('include/_header.html',{"title": "首页"})
+<div class="page-group">
+    <div class="page page-current serviceAgentDetail" data-module="serviceProductDetail">
+        <!-- bar -->
+        <header class="bar bar-nav bg-warn">
+            <a class="button button-link button-nav pull-left" onClick="javascript:history.back(-1);">
+                <i class="iconfont icon-left"></i>
+            </a>
+            <h1 class="title">服务机构详情</h1>
+        </header>
+        <!-- content -->
+        <div class="content pad-100">
+        <!-- 轮播 -->
+            <div class="swiper-container detail-banner" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="../images/detail-banner.png" alt=""></div>
+                    <div class="swiper-slide"><img src="../images/detail-banner.png" alt=""></div>
+                    <div class="swiper-slide"><img src="../images/detail-banner.png" alt=""></div>
+                    <div class="swiper-slide"><img src="../images/detail-banner.png" alt=""></div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+                <!-- 如果需要导航按钮 -->
+                <!--<div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>-->
+            </div>
+            <!-- 服务产品详细 -->
+            <div class="product-box">
+                <p class="product-name"><span class="mark">签约机构</span><span>安徽鼎盛信息科技有限公司</span></p>
+                
+                
+            </div>
+            <div class="split-line"></div>
+            <!-- 服务类别 -->
+            <div class="product-attribute">
+                <div class="f-cb"><span class="product-label f-fl">所属行业</span><span class="f-fl">管理咨询</span></div>
+                <div class="f-cb"><span class="product-label f-fl">所在地址</span><span class="f-fl">合肥市高新区东风街道芙蓉中路478号</span></div>
+                <div class="f-cb"><span class="product-label f-fl">机构网址</span><span class="f-fl">www.hejun.com</span></div>
+                <div class="f-cb"><span class="product-label f-fl">联系人</span><span class="f-fl">李四</span></div>
+                <div class="f-cb"><span class="product-label f-fl">联系电话</span><span class="f-fl">0551-65847879</span></div>
+                <div class="f-cb"><span class="product-label f-fl">传真</span><span class="f-fl">0551-65847879</span></div>
+                <div class="f-cb"><span class="product-label f-fl">邮箱</span><span class="f-fl">156489755@qq.com</span></div>
+            </div>
+            <div class="split-line"></div>
+            <div class="service-introduction">
+                <div class="detail-title">机构介绍</div>
+                <div class="service-introduction-detail">
+                    标体系构建、商业模式创新、营销创新与突破、精益生产、人力资源、股权激励与分钱游戏、技术创新、现场管理。
+                </div>
+            </div>
+            
+
+        </div>
+        <div class="green-btn bar bar-tab">
+               <a href="">一键联系</a>
+           </div>
+        
+    </div>
+
+</div>
+@@include('include/_footer.html')
