@@ -1,0 +1,36 @@
+# Logs
+Logs
+*.log
+npm-debug.log*
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directory
+node_modules
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# VSCODE 
+.vscode
+
+# JETBRAIN
+.idea
+
+# Static
+Static
+
+# Yarn
+yarn.lock
+yarn-error.log
+
+src/config/*
+!src/config/index.js
+!src/config/default.js.idea
