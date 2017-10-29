@@ -11,3 +11,10 @@
 * `Static` 全站静态资源文件
 * `ecosystem.config.js` PM2文件发布配置文件
 * `gulpfiles` gulp配置文件
+
+### api环境切换工具
+`npm run capi -d <env>`
+
+#### 可选参数
+* `dev` 本地开发环境
+* `prod` 线上生产环境
