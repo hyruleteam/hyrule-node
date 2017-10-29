@@ -1,9 +1,9 @@
 /**
  * Created by wenyu on 2017/3/9.
  */
-define(['template'], function(template) {
+define(['apiURL', 'template'], function(apiURL, template) {
     /*通用接口地址*/
-    var baseUrl = "https://cnodejs.org/api/v1"; //外网
+    var baseUrl = apiURL.baseUrl; //外网
     var apiCallUrl = baseUrl + ""; //通用，上传除外
     var uploadUrl = baseUrl + "api/h5/fileupload"; //上传图片专用地址
 

@@ -4,6 +4,7 @@
 requirejs.config({
     baseUrl: '/js',
     paths: {
+        apiURL: 'pages/module/apiURL',
         utils: 'pages/module/utils',
         wjs: 'pages/module/wjs',
         jquery: 'vendor/jquery/jquery.min',
