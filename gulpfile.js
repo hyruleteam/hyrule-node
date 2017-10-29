@@ -13,7 +13,10 @@ const nodemon = require('gulp-nodemon');
 const browserSync = require('browser-sync').create();
 const GulpSSH = require('gulp-ssh');
 const plumber = require('gulp-plumber');
+const changed = require('gulp-changed');
+const watch = require('gulp-watch');
 
+//编译路径
 const serverPath = './Server';
 const devPath = './Client';
 const distPath = './Static';
@@ -28,44 +31,72 @@ gulp.task('browser-sync', () => {
     });
 });
 
+//art
+gulp.task('buildArt', () => {
+    return watch(`${serverPath}/views/**/*.art`, () => {
+        gulp.src([`${serverPath}/views/**/*.art`])
+            .pipe(plumber())
+            .pipe(changed(`${distPath}/html`, { hasChanged: changed.compareContents, extension: '.art' }))
+            .pipe(gulp.dest(`${distPath}/html`))
+            .pipe(browserSync.stream());
+    })
+});
+
 //html
 gulp.task('buildHtml', () => {
-    return gulp.src([`${devPath}/html/**/*.html`, `!${devPath}/html/include/*.html`])
-        .pipe(plumber())
-        .pipe(fileinclude({
-            prefix: '@@',
-            basepath: '@file'
-        }))
-        .pipe(gulp.dest(`${distPath}/html`))
+    return watch(`${devPath}/html/**/*.html`, () => {
+        gulp.src([`${devPath}/html/**/*.html`, `!${devPath}/html/include/*.html`])
+            .pipe(plumber())
+            .pipe(changed(`${distPath}/html`, { hasChanged: changed.compareContents }))
+            .pipe(fileinclude({
+                prefix: '@@',
+                basepath: '@file'
+            }))
+            .pipe(gulp.dest(`${distPath}/html`))
+            .pipe(browserSync.stream());
+    })
 });
 
 //style
 gulp.task('buildStyle', () => {
-    return gulp.src(`${devPath}/sass/*.scss`)
-        .pipe(plumber())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest(`${distPath}/css/`))
-        .pipe(browserSync.stream()); //browserSync:只监听sass编译之后的css
+    return watch(`${devPath}/sass/**/*.scss`, () => {
+        gulp.src(`${devPath}/sass/*.scss`)
+            .pipe(plumber())
+            .pipe(changed(`${distPath}/css/`, { hasChanged: changed.compareContents, extension: '.css' }))
+            .pipe(sass().on('error', sass.logError))
+            .pipe(gulp.dest(`${distPath}/css/`))
+            .pipe(browserSync.stream()); //browserSync:只监听sass编译之后的css
+    })
 });
 
 //js
 gulp.task('buildJs', () => {
-    const pageJs = gulp.src([`${devPath}/js/pages/**/*.js`])
-        .pipe(plumber())
-        .pipe(gulp.dest(`${distPath}/js/pages/`));
+    const pageJs = watch(`${devPath}/js/pages/**/*.js`, () => {
+        gulp.src([`${devPath}/js/pages/**/*.js`])
+            .pipe(plumber())
+            .pipe(changed(`${distPath}/js/pages/`, { hasChanged: changed.compareContents }))
+            .pipe(gulp.dest(`${distPath}/js/pages/`))
+            .pipe(browserSync.stream());
+    })
 
-    const vendorJs = gulp.src([`${devPath}/js/vendor/**/*`])
-        .pipe(plumber())
-        .pipe(gulp.dest(`${distPath}/js/vendor/`));
+    const vendorJs = watch(`${devPath}/js/vendor/**/*`, () => {
+        gulp.src([`${devPath}/js/vendor/**/*`])
+            .pipe(plumber())
+            .pipe(gulp.dest(`${distPath}/js/vendor/`))
+            .pipe(browserSync.stream());
+    })
 
     return merge(pageJs, vendorJs);
 });
 
 //images
 gulp.task('buildImages', () => {
-    return gulp.src([`${devPath}/images/**/*`, `!${devPath}/images/sprites/**/*`])
-        .pipe(plumber())
-        .pipe(gulp.dest(`${distPath}/images/`))
+    return watch(`${devPath}/images/**/*`, () => {
+        gulp.src([`${devPath}/images/**/*`, `!${devPath}/images/sprites/**/*`])
+            .pipe(plumber())
+            .pipe(gulp.dest(`${distPath}/images/`))
+            .pipe(browserSync.stream())
+    })
 });
 
 //sprites
@@ -101,7 +132,7 @@ gulp.task('buildClean', () => {
 });
 
 //devPack
-gulp.task('devPack', ['buildHtml', 'buildStyle', 'buildJs', 'buildImages']);
+gulp.task('devPack', ['buildArt', 'buildStyle', 'buildJs', 'buildImages']);
 
 //buildPack
 gulp.task('buildPack', ['devPack'], () => {
@@ -154,10 +185,6 @@ gulp.task('default', ['devPack', 'nodemon', 'browser-sync'], () => {
             `${serverPath}/views/**/*.art`
         ])
         .on('change', browserSync.reload);
-
-    gulp.watch([`${devPath}/sass/**/*.scss`], ['buildStyle']);
-    gulp.watch([`${devPath}/js/**/*`], ['buildJs']);
-    gulp.watch([`${devPath}/images/**/*`], ['packImages']);
 });
 
 

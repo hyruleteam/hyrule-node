@@ -2,12 +2,13 @@ define(["jquery", "light7", "utils"], function($, L, utils) {
     var index = {
         init: function() {
             $.init();
-            this.loadMore()
+            this.loadMore();
         },
         loadMore: function() {
             var _self = this,
                 loading = false,
-                page = 1;
+                page = 1,
+                a = 1;
 
             $(document).on('infinite', '.infinite-scroll', function() {
                 if (loading) return;
