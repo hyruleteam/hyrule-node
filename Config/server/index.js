@@ -1,4 +1,4 @@
-const baseURL = "http://171.68.98.4"
+const baseURL = "https://cnodejs.org/api/v1"
 module.exports = {
     hostUrl: baseURL,
     wechat: {

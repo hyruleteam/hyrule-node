@@ -4,7 +4,7 @@
 define([], function() {
     /*通用接口地址*/
     var apiURL = {};
-    apiURL.baseURL = 'http://172.16.5.49:8089'; // 测试服务器
+    apiURL.baseURL = 'https://cnodejs.org/api/v1'; // 测试服务器
 
     apiURL.socketUrl = apiURL.baseURL.replace('http://', '');
     apiURL.yjUrl = apiURL.baseURL + "/open/api/";

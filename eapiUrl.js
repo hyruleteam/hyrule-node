@@ -8,8 +8,14 @@ const apiFile = {
     client: "./Static/js/pages/module/apiURL.js"
 }
 const apiURL = {
-    dev: "http://171.68.98.4",
-    prod: "http://36.18.23.22"
+    dev: {
+        out: "http:/11.11.11.11:8089",
+        in: "http://11.11.11.11:8089"
+    },
+    prod: {
+        out: "http://11.11.11.11:18089",
+        in: "http://11.11.11.11:8089"
+    },
 }
 
 program
@@ -33,7 +39,7 @@ if (apiURL[program.deploy]) {
         if (err) console.log(chalk.red(`服务端配置文件不存在`));
         const reg = /baseURL[\s]*=[\s]*["|'][^"|']+["|']/g;
         const reg2 = /["|'](.*)["|']/g;
-        const rst = data.match(reg)[0].replace(reg2, `\"${apiURL[program.deploy]}\"`);
+        const rst = data.match(reg)[0].replace(reg2, `\"${apiURL[program.deploy].in}\"`);
         const newData = data.replace(reg, rst)
 
         fs.writeFile(apiFile.server, newData, (err) => {
@@ -47,7 +53,7 @@ if (apiURL[program.deploy]) {
         if (err) console.log(chalk.red(`客户端配置文件不存在`));
         const reg = /\w+\.baseURL[=|\s]+["|'][^"|']+["|']/g;
         const reg2 = /["|'](.*)["|']/g;
-        const rst = data.match(reg)[0].replace(reg2, `\"${apiURL[program.deploy]}\"`);
+        const rst = data.match(reg)[0].replace(reg2, `\"${apiURL[program.deploy].out}\"`);
         const newData = data.replace(reg, rst);
 
         fs.writeFile(apiFile.client, newData, (err) => {
