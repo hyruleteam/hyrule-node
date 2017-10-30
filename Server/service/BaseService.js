@@ -3,7 +3,7 @@ const rp = require('request-promise');
 
 class BaseService {
     constructor() {
-        this.url = config.baseURL
+        this.url = config.hostUrl
     }
 
     error() {
@@ -11,7 +11,7 @@ class BaseService {
         return error;
     }
 
-    async getData(postParams){
+    async getData(postParams) {
         const options = {
             method: 'GET',
             json: true,
@@ -29,11 +29,11 @@ class BaseService {
         }
     }
 
-    async postData(postParams){
+    async postData(postParams) {
         const options = {
             method: 'POST',
             json: true,
-            qs:postParams.qs,
+            qs: postParams.qs,
             uri: `${this.url}${postParams.uri}`
         };
         try {
