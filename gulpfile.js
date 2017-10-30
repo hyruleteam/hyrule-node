@@ -135,29 +135,28 @@ gulp.task('buildClean', () => {
 gulp.task('devPack', ['buildArt', 'buildStyle', 'buildJs', 'buildImages']);
 
 //buildPack
-gulp.task('buildPack', ['devPack'], () => {
-    const styles = gulp.src(`${distPath}/css/*.css`)
+gulp.task('buildPack', ['buildClean'], () => {
+    const styles = gulp.src(`${devPath}/sass/*.scss`)
         .pipe(plumber())
+        .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 2 versions', 'last 2 Explorer versions', '> 5%']
         }))
-        .pipe(minifycss())
         .pipe(gulp.dest(`${distPath}/css/`));
 
-    const js = gulp.src(`${distPath}/js/pages/*.js`)
+    const pagejs = gulp.src(`${devPath}/js/pages/**/*.js`)
         .pipe(plumber())
         .pipe(uglify())
-        .pipe(gulp.dest(`${distPath}/js/`));
+        .pipe(gulp.dest(`${distPath}/js/pages`));
 
-    const images = gulp.src([`${distPath}/images/**/*`])
-        .pipe(imagemin({
-            optimizationLevel: 3,
-            progressive: true,
-            interlaced: true
-        }))
+    const vendorJs = gulp.src([`${devPath}/js/vendor/**/*`])
+        .pipe(plumber())
+        .pipe(gulp.dest(`${distPath}/js/vendor/`))
+
+    const images = gulp.src([`${devPath}/images/**/*`, `!${devPath}/images/sprites/**/*`])
         .pipe(gulp.dest(`${distPath}/images/`));
 
-    return merge(styles, js, images);
+    return merge(styles, pagejs, vendorJs, images);
 });
 
 //nodemon
