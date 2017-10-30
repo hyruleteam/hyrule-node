@@ -31,9 +31,9 @@ if (apiURL[program.deploy]) {
     //server
     fs.readFile(apiFile.server, 'utf8', (err, data) => {
         if (err) console.log(chalk.red(`服务端配置文件不存在`));
-        const reg = /(baseURL)(\s|):(\s|)(.*)/g;
-        const reg2 = /\'(.*)\'/g;
-        const rst = data.match(reg)[0].replace(reg2, `\'${apiURL[program.deploy]}\'`);
+        const reg = /baseURL[\s]*=[\s]*["|'][^"|']+["|']/g;
+        const reg2 = /["|'](.*)["|']/g;
+        const rst = data.match(reg)[0].replace(reg2, `\"${apiURL[program.deploy]}\"`);
         const newData = data.replace(reg, rst)
 
         fs.writeFile(apiFile.server, newData, (err) => {
@@ -45,9 +45,9 @@ if (apiURL[program.deploy]) {
     //client
     fs.readFile(apiFile.client, 'utf8', (err, data) => {
         if (err) console.log(chalk.red(`客户端配置文件不存在`));
-        const reg = /(baseURL)(\s|)=(\s|)(.*)/g;
-        const reg2 = /\'(.*)\'/g;
-        const rst = data.match(reg)[0].replace(reg2, `\'${apiURL[program.deploy]}\'`);
+        const reg = /\w+\.baseURL[=|\s]+["|'][^"|']+["|']/g;
+        const reg2 = /["|'](.*)["|']/g;
+        const rst = data.match(reg)[0].replace(reg2, `\"${apiURL[program.deploy]}\"`);
         const newData = data.replace(reg, rst);
 
         fs.writeFile(apiFile.client, newData, (err) => {
