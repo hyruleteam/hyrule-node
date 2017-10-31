@@ -4,13 +4,21 @@ const render = require('koa-art-template');
 const path = require('path');
 const json = require('koa-json');
 const session = require('koa-session');
+const redisStore = require('koa-redis');
 const bodyparser = require('koa-bodyparser');
 const route = require('./routes/route');
+const config = require('../Config/server/index');
 
 //middleware
-const loggerError  = require('./middleware/logger');
-const wechat  = require('./middleware/wechat');
+const loggerError = require('./middleware/logger');
+const wechat = require('./middleware/wechat');
 const templateFilter = require('./middleware/templateFilter');
+
+const redisOptions = {
+    host: config.redis.host,
+    port: config.redis.port,
+    pass: config.redis.pass
+}
 
 
 // error handler
@@ -27,8 +35,8 @@ app.use(require('koa-static')('./Static'))
 app.keys = ['scapp'];
 
 const CONFIG = {
+    store: redisStore(redisOptions),
     key: 'koa:sess',
-    maxAge: 30*1000,
     overwrite: true,
     httpOnly: true,
     signed: true,
@@ -49,7 +57,7 @@ app.use(templateFilter());
 app.use(wechat());
 
 // logger
-app.use(async (ctx, next) => {
+app.use(async(ctx, next) => {
     const start = new Date()
     await next()
     const ms = new Date() - start
@@ -60,7 +68,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use(route.routes(), route.allowedMethods())
 
-app.use(async (ctx) => {
+app.use(async(ctx) => {
     switch (ctx.status) {
         case 404:
             await ctx.render('404');
