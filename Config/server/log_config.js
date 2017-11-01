@@ -12,48 +12,48 @@ const resFilename = resPath + '/response'
 /**
  * 确定目录是否存在，如果不存在则创建目录
  */
-const confirmPath = function (pathStr) {
+const confirmPath = function(pathStr) {
     if (!fs.existsSync(pathStr)) {
         fs.mkdirSync(pathStr);
         console.log('createPath: ' + pathStr);
     }
 }
 
-
 log4js.configure({
     appenders: {
-        cons: {
+        console: {
             category: 'consoleLog',
             type: 'console',
-            layout: {type: 'coloured'}
+            layout: { type: 'coloured' }
         },
-        err: {
+        errorLog: {
             category: 'errorLog',
             type: 'dateFile',
             filename: errorFilename,
-            layout: {type: 'coloured'},
+            layout: { type: 'coloured' },
             alwaysIncludePattern: true,
             pattern: '-yyyy-MM-dd-hh.log'
         },
 
     },
     categories: {
-        default: {
-            appenders: ['cons'],
-            level: 'error'
+        "errorLog": {
+            "appenders": ["errorLog", "console"],
+            "level": "error"
         },
-        errorLog:{
-            appenders: ['err'],
-            level: 'error'
-        }
+        "default": {
+            "appenders": ["console"],
+            "level": "error"
+        },
     },
+    "replaceConsole": true,
     pm2: true
 })
 
 //创建log的根目录'logs'
+//根据不同的logType创建不同的文件目录
 if (basePath) {
     confirmPath(basePath)
-    //根据不同的logType创建不同的文件目录
     confirmPath(errorPath)
     confirmPath(resPath)
 }
