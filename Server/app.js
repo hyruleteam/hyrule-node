@@ -1,24 +1,23 @@
 const Koa = require('koa');
 const app = new Koa();
+const config = require('../Config/server/index');
 const render = require('koa-art-template');
 const path = require('path');
 const json = require('koa-json');
 const session = require('koa-session');
-const redisStore = require('koa-redis');
+const redisStore = require('koa-redis')({
+    prefix: 'front',
+    host: config.redis.host,
+    port: config.redis.port,
+    pass: config.redis.pass,
+})
 const bodyparser = require('koa-bodyparser');
 const route = require('./routes/route');
-const config = require('../Config/server/index');
 
 //middleware
 const loggerError = require('./middleware/logger');
 const wechat = require('./middleware/wechat');
 const templateFilter = require('./middleware/templateFilter');
-
-const redisOptions = {
-    host: config.redis.host,
-    port: config.redis.port,
-    pass: config.redis.pass
-}
 
 
 // error handler
@@ -35,13 +34,17 @@ app.use(require('koa-static')('./Static'))
 app.keys = ['scapp'];
 
 const CONFIG = {
-    store: redisStore(redisOptions),
+    store: redisStore,
     key: 'koa:sess',
     overwrite: true,
     httpOnly: true,
     signed: true,
     rolling: false
 };
+
+redisStore.on("error", function(err) {
+    throw new Error(err);
+});
 
 app.use(session(CONFIG, app));
 
