@@ -1,0 +1,16 @@
+{{include './include/header.art'}}
+<div class="page-group">
+    <div class="page page-current" data-module="index" id="index">
+        <!-- bar -->
+        {{include './include/headbar.art' title}}
+        <div class="content bg-grey">
+            <div class="m-topics-title">
+                {{@topicsDetails.title}}
+            </div>
+            <div class="m-topics-details">
+                {{@topicsDetails.content}}
+            </div>
+        </div>
+    </div>
+</div>
+{{include './include/footer.art'}}

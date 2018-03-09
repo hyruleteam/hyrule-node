@@ -1,0 +1,40 @@
+{{include './include/header.art'}}
+<div class="page-group">
+    <div class="page page-current" data-module="index" id="index">
+        <!-- bar -->
+        {{include './include/headbar.art' title}} {{include './include/navbar.art' act}}
+        <div class="content bg-grey infinite-scroll" data-distance="100">
+            <div class="m-topics-list">
+                <ul class="lists">
+                    {{each topics val key}}
+                    <a href="/topic/{{val.id}}" class="f-db">
+                        <li class="item">
+                            <p class="f-toe">{{val.title}}</p>
+                            <p class="f-push-5-t">
+                                <img src="{{val.author.avatar_url}}" alt="">
+                                <span>{{val.author.loginname}}</span>
+                            </p>
+                        </li>
+                    </a>
+                    {{/each}}
+                </ul>
+                <script type="text/html" id="m-topics-list-tpl">
+                    <?each data val key?>
+                        <a href="/topic/<?val.id?>" class="f-db">
+                            <li class="item">
+                                <p class="f-toe">
+                                    <?val.title?>
+                                </p>
+                                <p class="f-push-5-t">
+                                    <img src="<?val.author.avatar_url?>" alt="">
+                                    <span><?val.author.loginname?></span>
+                                </p>
+                            </li>
+                        </a>
+                        <?/each?>
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+{{include './include/footer.art'}}

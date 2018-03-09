@@ -17,9 +17,9 @@ const changed = require('gulp-changed');
 const watch = require('gulp-watch');
 
 //编译路径
-const serverPath = './Server';
-const devPath = './Client';
-const distPath = './Static';
+const serverPath = './server';
+const devPath = './client';
+const distPath = './static';
 
 //browser-sync
 gulp.task('browser-sync', () => {
@@ -187,7 +187,7 @@ gulp.task('default', ['devPack', 'nodemon', 'browser-sync'], () => {
 });
 
 
-let config = require('./Config/build/config.build');
+let config = require('./config/build/config.build');
 let sshConfig = config.dev;
 // 打开ssh通道
 const gulpSSH = new GulpSSH({

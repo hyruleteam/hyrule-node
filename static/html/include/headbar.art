@@ -1,0 +1,6 @@
+<header class="bar bar-nav bg-warn m-navbar">
+    <a class="button button-link button-nav pull-left back" onClick="javascript:history.go(-1);">
+        <i class="iconfont icon-left"></i>
+    </a>
+    <h1 class="title">{{$data}}</h1>
+</header>

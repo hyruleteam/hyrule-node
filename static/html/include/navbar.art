@@ -1,0 +1,23 @@
+<nav class="bar bar-tab index-navbar">
+    <a class="tab-item {{$data == 0?'active':''}}" href="/home">
+        <span class="icon iconfont icon-shouye-copy"></span>
+        <span class="tab-label">首页</span>
+    </a>
+    <a class="tab-item {{$data == 1?'active':''}}" href="/home">
+        <span class="icon iconfont icon-leimupinleifenleileibie"></span>
+        <span class="tab-label">分类</span>
+    </a>
+    <a class="tab-item {{$data == 2?'active':''}}" href="/home">
+        <span class="icon iconfont icon-huodong"></span>
+        <span class="tab-label">活动</span>
+    </a>
+    <a class="tab-item {{$data == 3?'active':''}}" href="/home">
+        <span class="icon iconfont icon-gouwuche"></span>
+        <span class="tab-label">购物车</span>
+    </a>
+    <a class="tab-item {{$data == 4?'active':''}}" href="/home">
+        <span class="icon iconfont icon-wodedangxuan"></span>
+        <span class="tab-label">我的</span>
+        <!--<span class="badge">2</span>-->
+    </a>
+</nav>

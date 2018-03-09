@@ -4,8 +4,8 @@ const program = require('commander')
 const fs = require('fs');
 let chalk = require('chalk')
 const apiFile = {
-    server: "./Config/server/index.js",
-    client: "./Static/js/pages/module/apiURL.js"
+    server: "./config/server/index.js",
+    client: "./static/js/pages/module/apiURL.js"
 }
 const apiURL = {
     dev: "http://171.68.98.4",
