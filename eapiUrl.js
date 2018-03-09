@@ -1,24 +1,20 @@
 #!/usr/bin/env node
+
 const program = require('commander')
 const fs = require('fs');
 let chalk = require('chalk')
-const jsConfig = './Static/js/pages/main.js';
 const apiFile = {
     server: "./Config/server/index.js",
     client: "./Static/js/pages/module/apiURL.js"
 }
 const apiURL = {
     dev: {
-        out: "http://172.16.5.49:8089",
-        in: "http://172.16.5.49:8089"
-    },
-    devout: {
-        out: "http://36.7.136.3:18089",
-        in: "http://172.16.5.49:8089"
+        out: "http:/11.11.11.11:8089",
+        in: "http://11.11.11.11:8089"
     },
     prod: {
-        out: "http://101.201.51.188:8080",
-        in: "http://10.46.180.210:8080"
+        out: "http://11.11.11.11:18089",
+        in: "http://11.11.11.11:8089"
     },
 }
 
@@ -43,7 +39,7 @@ if (apiURL[program.deploy]) {
         if (err) console.log(chalk.red(`服务端配置文件不存在`));
         const reg = /baseURL[\s]*=[\s]*["|'][^"|']+["|']/g;
         const reg2 = /["|'](.*)["|']/g;
-        const rst = data.match(reg)[0].replace(reg2, `\'${apiURL[program.deploy].in}\'`);
+        const rst = data.match(reg)[0].replace(reg2, `\"${apiURL[program.deploy].in}\"`);
         const newData = data.replace(reg, rst)
 
         fs.writeFile(apiFile.server, newData, (err) => {
@@ -57,7 +53,7 @@ if (apiURL[program.deploy]) {
         if (err) console.log(chalk.red(`客户端配置文件不存在`));
         const reg = /\w+\.baseURL[=|\s]+["|'][^"|']+["|']/g;
         const reg2 = /["|'](.*)["|']/g;
-        const rst = data.match(reg)[0].replace(reg2, `\'${apiURL[program.deploy].out}\'`);
+        const rst = data.match(reg)[0].replace(reg2, `\"${apiURL[program.deploy].out}\"`);
         const newData = data.replace(reg, rst);
 
         fs.writeFile(apiFile.client, newData, (err) => {
@@ -68,14 +64,3 @@ if (apiURL[program.deploy]) {
 } else {
     console.log(chalk.red(`参数错误`))
 }
-
-//set Version about requireJS
-fs.readFile(jsConfig, 'utf8', (err, data) => {
-    const timer = (new Date()).getTime();
-    const reg = /{{+[a-z]+}}/g;
-    const rst = data.replace(reg,timer);
-    fs.writeFile(jsConfig, rst, (err) => {
-        if (err) console.log(chalk.red(`js配置文件不存在`));
-        console.log(chalk.green(`js配置文件修改成功，当前版本为${timer}`));
-    });
-});

@@ -1,5 +1,6 @@
 const gulp = require('gulp');
-const minifyCSS = require('gulp-minify-css');
+const minifycss = require('gulp-minify-css');
+const fileinclude = require('gulp-file-include');
 const sass = require('gulp-sass');
 const spritesmith = require('gulp.spritesmith');
 const uglify = require('gulp-uglify');
@@ -14,15 +15,11 @@ const GulpSSH = require('gulp-ssh');
 const plumber = require('gulp-plumber');
 const changed = require('gulp-changed');
 const watch = require('gulp-watch');
-const sourcemaps = require('gulp-sourcemaps');
-
-const rev = require('gulp-revm');
-const revCollector = require('gulp-revm-collector');
 
 //编译路径
-const serverPath = './server';
-const devPath = './client';
-const distPath = './static';
+const serverPath = './Server';
+const devPath = './Client';
+const distPath = './Static';
 
 //browser-sync
 gulp.task('browser-sync', () => {
@@ -39,7 +36,7 @@ gulp.task('buildArt', () => {
     return watch(`${serverPath}/views/**/*.art`, () => {
         gulp.src([`${serverPath}/views/**/*.art`])
             .pipe(plumber())
-            .pipe(changed(`${distPath}/html`, {hasChanged: changed.compareContents, extension: '.art'}))
+            .pipe(changed(`${distPath}/html`, { hasChanged: changed.compareContents, extension: '.art' }))
             .pipe(gulp.dest(`${distPath}/html`))
             .pipe(browserSync.stream());
     })
@@ -50,7 +47,7 @@ gulp.task('buildHtml', () => {
     return watch(`${devPath}/html/**/*.html`, () => {
         gulp.src([`${devPath}/html/**/*.html`, `!${devPath}/html/include/*.html`])
             .pipe(plumber())
-            .pipe(changed(`${distPath}/html`, {hasChanged: changed.compareContents}))
+            .pipe(changed(`${distPath}/html`, { hasChanged: changed.compareContents }))
             .pipe(fileinclude({
                 prefix: '@@',
                 basepath: '@file'
@@ -65,10 +62,8 @@ gulp.task('buildStyle', () => {
     return watch(`${devPath}/sass/**/*.scss`, () => {
         gulp.src(`${devPath}/sass/*.scss`)
             .pipe(plumber())
-            .pipe(sourcemaps.init())
-            .pipe(changed(`${distPath}/css/`, {hasChanged: changed.compareContents, extension: '.css'}))
+            .pipe(changed(`${distPath}/css/`, { hasChanged: changed.compareContents, extension: '.css' }))
             .pipe(sass().on('error', sass.logError))
-            .pipe(sourcemaps.write('.'))
             .pipe(gulp.dest(`${distPath}/css/`))
             .pipe(browserSync.stream()); //browserSync:只监听sass编译之后的css
     })
@@ -79,7 +74,7 @@ gulp.task('buildJs', () => {
     const pageJs = watch(`${devPath}/js/pages/**/*.js`, () => {
         gulp.src([`${devPath}/js/pages/**/*.js`])
             .pipe(plumber())
-            .pipe(changed(`${distPath}/js/pages/`, {hasChanged: changed.compareContents}))
+            .pipe(changed(`${distPath}/js/pages/`, { hasChanged: changed.compareContents }))
             .pipe(gulp.dest(`${distPath}/js/pages/`))
             .pipe(browserSync.stream());
     })
@@ -119,8 +114,8 @@ const spritesMithConfig = {
 gulp.task('buildSprite', () => {
     const spriteData =
         gulp.src(`${devPath}/images/sprites/${argv.name}/*`)
-            .pipe(plumber())
-            .pipe(spritesmith(spritesMithConfig));
+        .pipe(plumber())
+        .pipe(spritesmith(spritesMithConfig));
 
     spriteData.img.pipe(gulp.dest(`${devPath}/images/sprite`));
     spriteData.img.pipe(gulp.dest(`${distPath}/images/sprite`));
@@ -140,11 +135,14 @@ gulp.task('buildClean', () => {
 gulp.task('devPack', ['buildArt', 'buildStyle', 'buildJs', 'buildImages']);
 
 //buildPack
-gulp.task('buildAssets', ['buildClean'], () => {
-    const styles = gulp.src([`${devPath}/sass/*.scss`])
+gulp.task('buildPack', ['buildClean'], () => {
+    const styles = gulp.src(`${devPath}/sass/*.scss`)
         .pipe(plumber())
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest(`${distPath}/css/`))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions', 'last 2 Explorer versions', '> 5%']
+        }))
+        .pipe(gulp.dest(`${distPath}/css/`));
 
     const pagejs = gulp.src(`${devPath}/js/pages/**/*.js`)
         .pipe(plumber())
@@ -156,36 +154,9 @@ gulp.task('buildAssets', ['buildClean'], () => {
         .pipe(gulp.dest(`${distPath}/js/vendor/`))
 
     const images = gulp.src([`${devPath}/images/**/*`, `!${devPath}/images/sprites/**/*`])
-        .pipe(gulp.dest(`${distPath}/images/`))
-        .pipe(rev())
-        .pipe(gulp.dest(`${distPath}/images/`))
-        .pipe(rev.manifest())
-        .pipe(gulp.dest(`${distPath}/rev/images`));
+        .pipe(gulp.dest(`${distPath}/images/`));
 
     return merge(styles, pagejs, vendorJs, images);
-});
-
-gulp.task('buildRevPack', ['buildAssets'], () => {
-    const styles = gulp.src([`${distPath}/css/*.css`])
-        .pipe(plumber())
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions', 'last 2 Explorer versions', '> 5%']
-        }))
-        .pipe(minifyCSS())
-        .pipe(rev())
-        .pipe(gulp.dest(`${distPath}/css/`))
-        .pipe(rev.manifest())
-        .pipe(gulp.dest(`${distPath}/rev/css`))
-
-    return merge(styles);
-})
-
-gulp.task('buildPack', ['buildRevPack'], () => {
-    gulp.src([`${distPath}/rev/**/*.json`, `${serverPath}/views/**/*.art`])
-        .pipe(revCollector({
-            replaceReved: true
-        }))
-        .pipe(gulp.dest(`${serverPath}/views`));
 });
 
 //nodemon
@@ -209,35 +180,35 @@ gulp.task('nodemon', cb => {
 
 gulp.task('default', ['devPack', 'nodemon', 'browser-sync'], () => {
     gulp.watch([
-        `${distPath}/**/*.+(css|js|png|jpg|ttf)`,
-        `${serverPath}/views/**/*.art`
-    ])
+            `${distPath}/**/*.+(css|js|png|jpg|ttf)`,
+            `${serverPath}/views/**/*.art`
+        ])
         .on('change', browserSync.reload);
 });
 
 
-// let config = require('./Config/build/config.build');
-// let sshConfig = config.dev;
-// // 打开ssh通道
-// const gulpSSH = new GulpSSH({
-//     ignoreErrors: false,
-//     sshConfig: sshConfig.ssh
-// })
+let config = require('./Config/build/config.build');
+let sshConfig = config.dev;
+// 打开ssh通道
+const gulpSSH = new GulpSSH({
+    ignoreErrors: false,
+    sshConfig: sshConfig.ssh
+})
 
-// gulp.task('execSSH', () => {
-//     return gulpSSH.shell(sshConfig.commands, { filePath: 'commands.log' })
-//         .pipe(gulp.dest('logs'))
-// });
+gulp.task('execSSH', () => {
+    return gulpSSH.shell(sshConfig.commands, { filePath: 'commands.log' })
+        .pipe(gulp.dest('logs'))
+});
 
-// gulp.task('deployFile', () => {
-//     return gulp
-//         .src(['./public/**'])
-//         .pipe(gulpSSH.dest(sshConfig.remoteDir))
-// });
+gulp.task('deployFile', () => {
+    return gulp
+        .src(['./public/**'])
+        .pipe(gulpSSH.dest(sshConfig.remoteDir))
+});
 
-// gulp.task('prd', ['execSSH'], () => {
-//     gulp.run('deployFile');
-// });
+gulp.task('prd', ['execSSH'], () => {
+    gulp.run('deployFile');
+});
 
 //buildBootstrap
 gulp.task('buildBootstrap', () => {
