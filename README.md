@@ -23,4 +23,5 @@
 * 进入根目录，通过`gulp`命令启动
 
 ### 其他命令
-* 打包资源文件：通过`gulp buildPack`命令启动
+* 打包资源文件：通过`gulp buildAssets`命令启动
+* 打包生产环境文件：通过`gulp buildPack`命令启动
