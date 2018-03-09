@@ -6,7 +6,7 @@ class IndexController extends BaseController {
         try {
             const topics = await new IndexService().topics(); //话题列表
             const config = super.config()
-            let value = await Promise.all([topics])
+            let value = await Promise.all([topics]);
 
             let [tData] = value;
             await ctx.render('index', {

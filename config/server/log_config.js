@@ -1,7 +1,7 @@
 const log4js = require('log4js')
 const path = require('path')
 const fs = require('fs')
-const basePath = path.resolve('./Logs')
+const basePath = path.resolve('./logs')
 
 const errorPath = basePath + '/errors/'
 const resPath = basePath + '/responses/'

@@ -1,4 +1,5 @@
 const baseURL = "https://cnodejs.org/api/v1"
+const siteinfo = require('./siteinfo');
 module.exports = {
     hostUrl: baseURL,
     wechat: {
@@ -10,5 +11,6 @@ module.exports = {
         host: '127.0.0.1',
         port: '6379',
         pass: ''
-    }
+    },
+    siteinfo:siteinfo
 }
