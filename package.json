@@ -7,9 +7,9 @@
     "start": "gulp",
     "dev": "gulp",
     "prd": "pm2 start bin/www",
-    "deploydev": "node config/build.js && pm2 deploy ecosystem.config.js dev",
-    "deployprod": "node config/build.js && pm2 deploy ecosystem.config.js production",
-    "capi": "node eapiUrl.js",
+    "deploydev": "pm2 deploy ecosystem.config.js dev",
+    "deployprod": "pm2 deploy ecosystem.config.js production",
+    "capi": "node build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
