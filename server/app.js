@@ -5,6 +5,7 @@ const render = require('koa-art-template');
 const path = require('path');
 const json = require('koa-json');
 const session = require('koa-session');
+const static = require('koa-static')
 const redisStore = require('koa-redis')({
     prefix: 'front',
     host: config.redis.host,
@@ -29,7 +30,10 @@ app.use(bodyparser({
 }))
 app.use(json())
 
-app.use(require('koa-static')('./Static'))
+const staticPath = '../static'
+app.use(static(
+    path.join(__dirname, staticPath)
+))
 
 app.keys = ['scapp'];
 
