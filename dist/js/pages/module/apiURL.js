@@ -1,0 +1,1 @@
+define([],function(){var e={};return e.baseURL="https://cnodejs.org/api/v1",e});

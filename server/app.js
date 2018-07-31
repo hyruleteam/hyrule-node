@@ -30,12 +30,13 @@ app.use(bodyparser({
 }))
 app.use(json())
 
-const staticPath = '../static'
+//render views
+const staticPath = '../dist'
 app.use(static(
     path.join(__dirname, staticPath)
 ))
 
-app.keys = ['scapp'];
+app.keys = ['koapp'];
 
 const CONFIG = {
     store: redisStore,
@@ -53,8 +54,8 @@ redisStore.on("error", function(err) {
 app.use(session(CONFIG, app));
 
 render(app, {
-    root: path.join(__dirname, 'views'),
-    extname: '.art',
+    root: path.join(__dirname, '../dist/views'),
+    extname: '.html',
     minimize: true,
     debug: process.env.NODE_ENV !== 'production'
 });

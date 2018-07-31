@@ -20,8 +20,8 @@ const revCollector = require('gulp-revm-collector');
 
 //编译路径
 const serverPath = './server';
-const devPath = './client';
-const distPath = './static';
+const devPath = './app';
+const distPath = './dist';
 
 //browser-sync
 gulp.task('browser-sync', () => {
@@ -33,33 +33,16 @@ gulp.task('browser-sync', () => {
     });
 });
 
-//art
-gulp.task('buildArt', () => {
-    return watch(`${serverPath}/views/**/*.art`, () => {
-        gulp.src([`${serverPath}/views/**/*.art`])
-            .pipe(plumber())
-            .pipe(changed(`${distPath}/html`, {
-                hasChanged: changed.compareContents,
-                extension: '.art'
-            }))
-            .pipe(gulp.dest(`${distPath}/html`))
-            .pipe(browserSync.stream());
-    })
-});
-
 //html
 gulp.task('buildHtml', () => {
-    return watch(`${devPath}/html/**/*.html`, () => {
-        gulp.src([`${devPath}/html/**/*.html`, `!${devPath}/html/include/*.html`])
+    return watch(`${devPath}/views/**/*.html`, () => {
+        gulp.src([`${devPath}/views/**/*.html`])
             .pipe(plumber())
-            .pipe(changed(`${distPath}/html`, {
-                hasChanged: changed.compareContents
+            .pipe(changed(`${distPath}/views`, {
+                hasChanged: changed.compareContents,
+                extension: '.html'
             }))
-            .pipe(fileinclude({
-                prefix: '@@',
-                basepath: '@file'
-            }))
-            .pipe(gulp.dest(`${distPath}/html`))
+            .pipe(gulp.dest(`${distPath}/views`))
             .pipe(browserSync.stream());
     })
 });
@@ -155,14 +138,19 @@ gulp.task('buildClean', () => {
 });
 
 //devPack
-gulp.task('devPack', ['buildArt', 'buildStyle', 'buildJs', 'buildImages', 'buildFont']);
+gulp.task('devPack', ['buildHtml', 'buildStyle', 'buildJs', 'buildImages', 'buildFont']);
 
 //buildPack
 gulp.task('buildAssets', ['buildClean'], () => {
+    const html = gulp.src([`${devPath}/views/**/*.html`])
+        .pipe(plumber())
+        .pipe(gulp.dest(`${distPath}/views/`))
+
     const styles = gulp.src([`${devPath}/sass/*.scss`])
         .pipe(plumber())
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest(`${distPath}/css/`))
+
     const pagejs = gulp.src(`${devPath}/js/pages/**/*.js`)
         .pipe(plumber())
         .pipe(uglify())
@@ -183,7 +171,7 @@ gulp.task('buildAssets', ['buildClean'], () => {
         .pipe(rev.manifest())
         .pipe(gulp.dest(`${distPath}/rev/images`));
 
-    return merge(styles, pagejs, vendorJs, fonts,images);
+    return merge(html, styles, pagejs, vendorJs, fonts,images);
 });
 
 gulp.task('buildRevPack', ['buildAssets'], () => {
