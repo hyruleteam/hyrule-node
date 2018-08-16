@@ -2,7 +2,7 @@
     "name": "hyrule-node",
     "description": "基于Nodejs Koa框架的前端渲染层服务",
     "author": "hyrule",
-    "version": "0.1.0",
+    "version": "2.0.0",
     "private": true,
     "scripts": {
         "start": "cross-env NODE_ENV=development gulp",
