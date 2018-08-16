@@ -1,13 +1,12 @@
 {
-    "name": "hyrule-node",
+    "name": "noa-node",
     "description": "基于Nodejs Koa框架的前端渲染层服务",
-    "author": "hyrule",
+    "author": "budiot",
     "version": "2.0.0",
-    "private": true,
     "scripts": {
         "start": "cross-env NODE_ENV=development gulp",
-        "prd": "cross-env NODE_ENV=production pm2 start ecosystem.config.js",
-        "localprd": "cross-env NODE_ENV=production node ./dist/bin/www",
+        "prd": "pm2 start ecosystem.config.js --env production",
+        "localprd": "cross-env NODE_ENV=production PORT=3099 node ./dist/bin/www",
         "clean": "gulp buildDistClean ",
         "complie": "gulp buildPack ",
         "version": "gulp buildRevHtml",

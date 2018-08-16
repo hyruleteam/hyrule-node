@@ -3,7 +3,6 @@
         "appConfig": {
             "appid": "66041ea37e064cb5a6b26dc99f341197",
             "appDomain": "",
-            "port": "3000",
             "staticPath": "../static"
         },
         "apiConfig":{

@@ -25,9 +25,6 @@ const resolve = require('rollup-plugin-node-resolve');
 const rev = require('gulp-revm');
 const revCollector = require('gulp-revm-collector');
 
-const config = require('config');
-const appConfig = config.get('Customer.appConfig');
-
 //编译路径
 const serverPath = './server';
 const devPath = './client';
@@ -78,26 +75,23 @@ const buildLibStyle = () => {
 }
 
 //读取入口文件
-const readFile = (path) =>
-    new Promise((res, rej) => {
-        fs.readdir(path, (err, data) => {
-            if (err) rej(err)
-            else res(data)
-        })
-    })
+let readdirfile = []
+const readFile = (path) =>{
+    readdirfile = fs.readdirSync(path,{encoding:'utf-8'})
+}
 
 const readEntryFile = async () =>{
     const filePath = path.join(__dirname, `${devPath}/js`)
 
-    const readdirfile = await readFile(filePath)
+    readFile(filePath)
 
     return readdirfile
         .filter(el => /\.js/.test(el))
         .map(item => `${devPath}/js/${item}`)
 }
 
-const buildJs = async () => {
-    const fileList = await readEntryFile()
+const buildJs = () => {
+    const fileList = readEntryFile();
     return gulp
         .src([`${devPath}/js/**/*.js`])
         .pipe(plumber())
@@ -144,7 +138,7 @@ const buildFonts = () => {
 
 //browser-sync
 gulp.task('browser-sync', () => {
-    browserSync.init({proxy: `http://localhost:${appConfig.port}`, port: 4000, open: false, notify: false});
+    browserSync.init({proxy: `http://localhost:${process.env.PORT || 3000}`, port: 4000, open: false, notify: false});
 });
 
 //html
