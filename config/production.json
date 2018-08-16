@@ -1,0 +1,12 @@
+{
+    "Customer": {
+        "appConfig": {
+            "appDomain": "36.111.45.44:3099",
+            "staticPath": "./static",
+            "port": "3099"
+        },
+        "apiConfig":{
+            "url": "https://cnodejs.org/api/v1"
+        }
+    }
+}

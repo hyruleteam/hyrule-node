@@ -1,25 +1,37 @@
 const Koa = require('koa');
 const app = new Koa();
-const config = require('../config/server/index');
-const render = require('koa-art-template');
+const render = require('koa-views');
 const path = require('path');
 const json = require('koa-json');
 const session = require('koa-session');
-const static = require('koa-static')
+const staticAssets = require('koa-static')
+const logger = require('./utils/winston');
+
+//config
+const config = require('config');
+const appConfig = config.get('Customer.appConfig');
+const redisConfig = config.get('Customer.redisConfig');
+const sessionConfig = config.get('Customer.sessionConfig');
+
 const redisStore = require('koa-redis')({
     prefix: 'front',
-    host: config.redis.host,
-    port: config.redis.port,
-    pass: config.redis.pass,
+    host: redisConfig.host,
+    port: redisConfig.port,
+    pass: redisConfig.pass,
 })
 const bodyparser = require('koa-bodyparser');
 const route = require('./routes/route');
 
 //middleware
 const loggerError = require('./middleware/logger');
-const wechat = require('./middleware/wechat');
-const templateFilter = require('./middleware/templateFilter');
+const globalVar = require('./middleware/global');
+const authtoken = require('./middleware/authtoken');
+const store = require('./middleware/store');
 
+//接口限流
+// app.proxy = true
+
+app.use(globalVar())
 
 // error handler
 app.use(loggerError())
@@ -30,60 +42,38 @@ app.use(bodyparser({
 }))
 app.use(json())
 
-const staticPath = '../static'
-app.use(static(
-    path.join(__dirname, staticPath)
+app.use(staticAssets(
+    path.join(__dirname, appConfig.staticPath)
 ))
 
-app.keys = ['scapp'];
+app.keys = ['budiotapp'];
 
 const CONFIG = {
-    store: redisStore,
-    key: 'koa:sess',
+    key: sessionConfig.key,
     overwrite: true,
     httpOnly: true,
     signed: true,
+    maxAge: sessionConfig.maxAge,
     rolling: false
 };
 
-redisStore.on("error", function(err) {
+redisStore.on("error", function (err) {
     throw new Error(err);
 });
 
 app.use(session(CONFIG, app));
 
-render(app, {
-    root: path.join(__dirname, 'views'),
-    extname: '.art',
-    minimize: true,
-    debug: process.env.NODE_ENV !== 'production'
-});
+// app.use(store());
 
-app.use(templateFilter());
+// app.use(authtoken());
 
-app.use(wechat());
-
-// logger
-app.use(async(ctx, next) => {
-    const start = new Date()
-    await next()
-    const ms = new Date() - start
-    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
-})
+app.use(render(path.join(__dirname, 'views'), {extension: 'ejs'}))
 
 
 // routes
-app.use(route.routes(), route.allowedMethods())
+app.use(route.routes(),route.middleware(), route.allowedMethods())
 
-app.use(async(ctx) => {
-    switch (ctx.status) {
-        case 404:
-            await ctx.render('404');
-            break;
-        case 500:
-            await ctx.render('500');
-            break;
-    }
-})
+
+logger.info(`当前开发环境：${process.env.NODE_ENV}`)
 
 module.exports = app

@@ -1,48 +1,7 @@
-const config = require('../../config/server/index');
+const logger = require('../utils/winston');
 const crypto = require('crypto');
-const log = require('../utils/log')
 
 class BaseController {
-    static config() {
-        return config;
-    }
-
-    /**
-     * 登录拦截器 检测token的有效性
-     * @param data
-     * @param ctx
-     * @param next
-     * @returns {Promise.<*>}
-     */
-    static async interceptor(data, ctx, next) {
-        const d = await data;
-        const start = new Date();
-        let ms;
-        try {
-            if (d.code === -1) {
-                ctx.redirect('/login?returnUrl=' + ctx.url)
-                return false;
-            } else if (d.code === 1) {
-                let err = {
-                    status:ctx.status,
-                    message:d.msg,
-                    stack:`${d.uri}:${d.msg}`,
-                    name:'后台接口报错'
-                };
-
-                ms = new Date() - start;
-                log.e(ctx, err, ms);
-
-                return false;
-            } else {
-                return d;
-            }
-
-        } catch (error) {
-            throw new Error(error);
-        }
-    }
-
     /**
      * 从session中获取用户信息
      * @param ctx
@@ -83,6 +42,40 @@ class BaseController {
             return ua.match(/MicroMessenger/i)[0] === 'micromessenger';
         }else{
             return false;
+        }
+    }
+
+    /**
+     * 返回正确的json信息
+     */
+    toJson(data,originData) {
+        const successData = {
+            code:0,
+            msg:'操作成功',
+            data: data.data,
+        }
+
+
+        if(data.code === 0){
+            if(process.env.NODE_ENV === 'development'){
+                successData.originData = originData.data
+            }
+            return successData
+        }else{
+            return {
+                code:data.code,
+                msg:data.msg,
+            }
+        }
+    }
+
+    /**
+     * 返回错误信息
+     */
+    toError(){
+        return {
+            code:-1,
+            msg:"网络错误",
         }
     }
 }
