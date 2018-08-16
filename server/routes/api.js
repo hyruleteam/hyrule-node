@@ -37,11 +37,11 @@ const checkAPIStatus = () => {
 }
 
 const refererAuth = () => {
-    return (ctx, next)=> {
+    return async (ctx, next)=> {
         const domainPatt = new RegExp(appConfig.appDomain);
         if(process.env.NODE_ENV === 'production'){
             if(domainPatt.test(ctx.request.header.referer)){
-                next()
+                await next()
             }else{
                 ctx.body = {
                     code: 400502,
@@ -49,7 +49,7 @@ const refererAuth = () => {
                 }
             }
         }else{
-            next()
+            await next()
         }
     }
 }
@@ -59,30 +59,10 @@ router.prefix('/api/v1/')
 router
     // .use(limiter)
     .use(refererAuth())
-    .use(checkAPIStatus());
 
-router.post('/productInfo', async (ctx, next) => {
-    await ApiController.productInfo(ctx, next)
+router.post('/list', async (ctx, next) => {
+    await ApiController.list(ctx, next)
 });
 
-router.post('/order/iotOrder', async (ctx, next) => {
-    await ApiController.iotOrder(ctx, next)
-});
-
-router.post('/order/pay', async (ctx, next) => {
-    await ApiController.pay(ctx, next)
-});
-
-router.post('/card/packageUsage', async (ctx, next) => {
-    await ApiController.packageUsage(ctx, next)
-});
-
-router.post('/card/searchHistory', async (ctx, next) => {
-    await ApiController.searchHistory(ctx, next)
-});
-
-router.post('/card/connectNetwork', async (ctx, next) => {
-    await ApiController.connectNetwork(ctx, next)
-});
 
 module.exports = router;
