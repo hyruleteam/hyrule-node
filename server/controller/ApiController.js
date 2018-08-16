@@ -19,9 +19,9 @@ class ApiController extends BaseController {
 
             logger.log('info', '查询列表');
 
-            const {response} = await new ApiService().topics(params);
+            const {response} = await new TopicService().topics(params);
 
-            ctx.body = this.toJson(response, response)
+            ctx.body = response
 
         } catch (e) {
             logger.log('error', e.stack);

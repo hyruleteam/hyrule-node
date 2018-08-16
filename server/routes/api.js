@@ -60,7 +60,7 @@ router
     // .use(limiter)
     .use(refererAuth())
 
-router.post('/list', async (ctx, next) => {
+router.get('/list', async (ctx, next) => {
     await ApiController.list(ctx, next)
 });
 
