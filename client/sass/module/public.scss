@@ -1,0 +1,13 @@
+body{
+    -webkit-tap-highlight-color:transparent;
+}
+
+.wrap{
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+.main{
+    flex:1;
+}

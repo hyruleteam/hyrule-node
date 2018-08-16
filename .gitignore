@@ -18,14 +18,20 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-# VSCODE 
+# VSCODE
 .vscode
 
 # JETBRAIN
 .idea
 
-# Static
-Static
+# static
+static
+
+# dist
+dist
+
+.DS_Store/*
+.DS_Store
 
 # Yarn
 yarn.lock
@@ -36,3 +42,5 @@ src/config/*
 !src/config/default.js.idea
 
 package-lock.json
+
+dump.rdb

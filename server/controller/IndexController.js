@@ -1,18 +1,24 @@
 const BaseController = require('./BaseController');
-const IndexService = require('./../service/IndexService');
+const TopicService = require('../service/TopicService');
 
+const topic = new TopicService()
 class IndexController extends BaseController {
-    static async home(ctx, next) {
+    async list(ctx, next) {
         try {
-            const topics = await new IndexService().topics(); //话题列表
-            const config = super.config()
-            let value = await Promise.all([topics]);
+            const params = {
+                qs: {
+                    page: 1,
+                    tab: 'share',
+                    limit: 10,
+                    mdrender: true
+                }
+            }
 
-            let [tData] = value;
+            const {response} = await topic.topics(params);
+
             await ctx.render('index', {
-                title: '首页',
-                act: '0',
-                topics: tData.data
+                title: '列表页',
+                data: response.data
             })
 
         } catch (error) {
@@ -20,16 +26,20 @@ class IndexController extends BaseController {
         }
     }
 
-    static async details(ctx, next) {
+    async details(ctx, next) {
         try {
-            const topics = await new IndexService().topicsDetails(ctx.params.id); //话题详情
-            const config = super.config()
-            let value = await Promise.all([topics])
+            const params = {
+                qs: {
+                    mdrender: true
+                }
+            }
+            const id = ctx.params.id
 
-            let [tData] = value;
+            const {response} = await topic.topicsDetails(params,id);
+
             await ctx.render('details', {
-                title: '详情',
-                topicsDetails: tData.data
+                title: '详情页',
+                data: response.data
             })
 
         } catch (error) {

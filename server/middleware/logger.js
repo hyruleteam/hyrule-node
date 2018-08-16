@@ -1,23 +1,25 @@
-const log = require('../utils/log')
+const logger = require('../utils/winston');
 module.exports = () => {
-    return async ( ctx, next ) => {
-        const start = new Date();
-        let ms;
+    return async(ctx, next) => {
         try {
-            await next();
-            // ms = new Date() - start;
-            // log.i(ctx, ms);
+            const start = new Date()
+            await next()
+            const ms = new Date() - start
+            // logger.info(`${ctx.method} ${ctx.url} - ${ms}ms`);
+
+            if(ctx.status === 404){
+                await ctx.render('error/404',{
+                    title: '页面找不到了'
+                });
+            }
         } catch (err) {
+
             ctx.status = err.status || 500;
+            logger.log('error', err.stack);
 
-            ms = new Date() - start;
-            //记录异常日志
-            log.e(ctx, err, ms);
-
-            await ctx.render('error', {
-                title:"错误",
-                err:err
-            })
+            await ctx.render('error/500',{
+                title: '服务器错误'
+            });
 
             ctx.app.emit('error', err, ctx);
         }

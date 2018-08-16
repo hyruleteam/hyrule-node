@@ -1,0 +1,17 @@
+<% if (G.env == "development") { %>
+  <script src="/lib/vue/vue.js"></script>
+<% } else { %>
+  <script src="/lib/vue/vue.min.js"></script>
+<% } %>
+<script src="/lib/vant/vant.min.js"></script>
+<script src="/lib/axios/axios.min.js"></script>
+
+<% if(jsFiles.length>0){ %>
+<% for(var i = 0;i<jsFiles.length;i++){ %>
+<script src="<%= jsFiles[i] %>"></script>
+<% }; %>
+<% } %>
+
+</body>
+
+</html>

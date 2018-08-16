@@ -1,0 +1,11 @@
+<%- include("./include/header")%>
+    <div class="m-index">
+        <ul>
+            <% for(var i = 0;i<data.length;i++){ %>
+                <li>
+                    <a href="/details/<%= data[i].id %>"><img src="<%= data[i].author.avatar_url %>" alt="" width="100"><%= data[i].title %></a>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+<%- include("./include/footer",{jsFiles:[]} )%>
