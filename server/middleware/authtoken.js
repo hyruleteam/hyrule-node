@@ -7,7 +7,7 @@ module.exports = () => {
         const token = await redis.getKey('token')
 
         if (!token) {
-            // await new AuthService().getAccessToken()
+            await new AuthService().getAccessToken()
             logger.log('info', token);
         }
 

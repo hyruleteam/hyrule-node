@@ -1,7 +1,7 @@
 {
     "Customer": {
         "appConfig": {
-            "appDomain": "36.111.45.44:3099",
+            "appDomain": "127.0.0.1",
             "staticPath": "./static"
         },
         "apiConfig":{

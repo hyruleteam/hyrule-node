@@ -1,7 +1,7 @@
 {
     "Customer": {
         "appConfig": {
-            "appid": "66041ea37e064cb5a6b26dc99f341197",
+            "appid": "",
             "appDomain": "",
             "staticPath": "../static"
         },
@@ -9,8 +9,8 @@
             "url": "https://cnodejs.org/api/v1"
         },
         "wechatConfig": {
-            "appId": "wx3039b960a183e45c",
-            "appSecret": "66fc3a8087885ddee3bc24d6bbf7ef52",
+            "appId": "",
+            "appSecret": "",
             "scope": "snsapi_userinfo"
         },
         "redisConfig": {
@@ -19,7 +19,7 @@
             "pass": ""
         },
         "sessionConfig": {
-            "key": "budiot:sess",
+            "key": "hyrule:sess",
             "maxAge": 86400000000
         },
         "creditConfig": {
