@@ -3,26 +3,6 @@ const crypto = require('crypto');
 
 class BaseController {
     /**
-     * 从session中获取用户信息
-     * @param ctx
-     * @param next
-     * @returns {Promise.<*>}
-     */
-    static async getUserSession(ctx, next) {
-        if (ctx.session.users && ctx.session.token) {
-            let data = {
-                users: ctx.session.users,
-                token: ctx.session.token
-            };
-            next();
-            return data;
-        } else {
-            ctx.redirect('/login?returnUrl=' + ctx.url);
-            return false;
-        }
-    }
-
-    /**
      * md5加密
      * @param data
      * @returns {Promise.<*>}
